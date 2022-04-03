@@ -1,0 +1,115 @@
+html {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background: #8e9eab; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to bottom,
+    #eef2f3,
+    #8e9eab
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    #eef2f3,
+    #8e9eab
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  background-attachment: fixed;
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+p{
+    color: #fff;
+}
+
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+
+nav.navbar-transparente {
+  padding: 10px 0px;
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: white;
+  margin: auto;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+  color: #00ff73;
+}
+
+.navbar-light .navbar-toggler {
+  color: #fff;
+  border-color: #00ff73;
+  margin: 15px;
+}
+
+
+/*------------- Main ---------------------*/
+/* From cssbuttons.io by @adamgiebl */
+
+
+li{ 
+    color: #fff;
+}
+
+.inputData {
+  align-items: center;
+  margin: 0 auto;
+  width: 50%;
+}
+
+
+
+
+/*------------- Botão ---------------------*/
+/* From cssbuttons.io by @adamgiebl */
+
+.cssbuttons-io-button {
+  display: flex;
+  align-items: center;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 0.7em 1.4em 0.7em 1.1em;
+  color: white;
+  background: #ad5389;
+  background: linear-gradient(
+    0deg,
+    rgba(20, 167, 62, 1) 0%,
+    rgba(102, 247, 113, 1) 100%
+  );
+  border: none;
+  box-shadow: 0 0.7em 1.5em -0.5em #14a73e98;
+  letter-spacing: 0.05em;
+  border-radius: 20em;
+}
+
+.cssbuttons-io-button svg {
+  margin-right: 6px;
+}
+
+.cssbuttons-io-button:hover {
+  box-shadow: 0 0.5em 1.5em -0.5em #14a73e98;
+}
+
+.cssbuttons-io-button:active {
+  box-shadow: 0 0.3em 1em -0.5em #14a73e98;
+}
+
+
+@media (max-width: 1366px) {
+    .inputData {
+        align-items: center;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+}
+
+
+  
