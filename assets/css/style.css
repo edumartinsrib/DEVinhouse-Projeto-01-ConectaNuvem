@@ -51,8 +51,7 @@ button {
   background: none;
 }
 
-.content,
-li {
+.content {
   flex: 1 1 0%;
   background-color: var(--light);
   padding: 0, 6rem;

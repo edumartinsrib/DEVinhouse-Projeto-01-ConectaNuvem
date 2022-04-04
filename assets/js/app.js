@@ -15,9 +15,11 @@ formSubmit.addEventListener("submit", (event) => {
     inputItem.value = "";
     inputItem.focus();
     createBtnEventListener();
+    createCheckEventListener();
   }
 });
 
+//delete item array/element html by id
 function deleteById(array, id) {
   try {
     let element = document.getElementById(id);
@@ -30,11 +32,21 @@ function deleteById(array, id) {
       array.splice(index, 1);
     }
 
-    //delete element html
-    element.remove();
-  } catch (erro) {}
+    element.remove(); //delete element html
+
+  } catch (erro) {
+
+  } finally{
+    updateStorage(); //Update Local Storage
+  }
 }
 
+//Update Array/LocalStorage 
+function updateById(array, id){
+  
+}
+
+//create Event Listener in all '.btn' elements
 function createBtnEventListener() {
   //get all ".btn" elements in array format
   let btnDel = document.querySelectorAll(".delete");
@@ -45,24 +57,35 @@ function createBtnEventListener() {
   }
 }
 
+//create Event Listener in all '.btn' elements
+function createCheckEventListener() {
+  //get all ".btn" elements in array format
+  let checkEl = document.querySelectorAll(".chk");
+  for (let item of checkEl) {
+    item.addEventListener("click", () => {
+      updateById(arrItem, item.id);
+    });
+  }
+}
 
-
+//Create new Item in HTML
 const newItemElement = (itemInput, idInput) => {
   const divItem = document.createElement("div");
   divItem.classList.add("item");
   divItem.setAttribute("id", idInput);
   divItem.innerHTML = `
   <div class="content animate__animated animate__fadeIn" name="${idInput}">
-    <input type="checkbox" class="form-check-input" name="${idInput}"/> <label for="${idInput}" class="lineThrough itemList"> ${itemInput}</label> 
+    <input type="checkbox" class="form-check-input chk" id="${idInput}"/> <label for="${idInput}" class="lineThrough itemList"> ${itemInput}</label> 
   </div>
   <div class="actions">
 
     <button name="${idInput}" class="delete fa-solid fa-trash-can">X</button>
   </div>   
-  `;
+  `; 
   return divItem;
 };
 
+//Add Item in Array
 function addItem(text, value, qtd) {
   const newID = Date.now() * Math.random();
   const itemArray = { text, checked: false, id: newID, value: value, qtd: qtd };
@@ -70,15 +93,16 @@ function addItem(text, value, qtd) {
   return newID;
 }
 
+//Add Item - master function
 function newItem(itemInput, id) {
   const addItemElement = newItemElement(itemInput, id);
   document.getElementById("items").appendChild(addItemElement);
+  
   updateStorage();
 }
 
+//update the local storage
 function updateStorage() {
   const itensJSON = JSON.stringify(arrItem);
   localStorage.setItem("listShop", itensJSON);
 }
-
-
