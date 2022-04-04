@@ -1,128 +1,120 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <title>Lista de Compras - DEVInHouse</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
 
-    <link href="https://fonts.googleapis.com/css?family=Nunito:400,700" rel="stylesheet">
+<head>
+  <title>Lista de Compras - DEVInHouse</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
-    />
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet prefetch"
-      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
-    />
-    <link rel="stylesheet" href="./assets/css/style.css" />
-    <link
-      type="image/png"
-      sizes="16x16"
-      rel="icon"
-      href="./assets/images/icons8-cesta-de-compras-16.png"
-    />
-  </head>
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,700" rel="stylesheet">
 
-  <body>
-    <header>
-      <div class="logo">
-        <svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-           <desc>Created with Sketch.</desc>
-           <defs>
-              <linearGradient x1="34.9523037%" y1="0%" x2="116.039609%" y2="115.484477%" id="linearGradient-1">
-                 <stop stop-color="#1700FF" offset="0%"></stop>
-                 <stop stop-color="#B10EF1" offset="100%"></stop>
-              </linearGradient>
-              <rect id="path-2" x="19.8783454" y="5.46149939" width="67.2578578" height="67.2008596" rx="8.99999976"></rect>
-              <filter x="-35.7%" y="-28.3%" width="162.4%" height="162.5%" filterUnits="objectBoundingBox" id="filter-3">
-                 <feOffset dx="-3" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-                 <feGaussianBlur stdDeviation="6.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-                 <feColorMatrix values="0 0 0 0 0.0296505968   0 0 0 0 0.0172602666   0 0 0 0 0.100446429  0 0 0 0.423177083 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-              </filter>
-              <linearGradient x1="0%" y1="0%" x2="115.291753%" y2="112.548614%" id="linearGradient-4">
-                 <stop stop-color="#1700FF" offset="0%"></stop>
-                 <stop stop-color="#9E0CF3" offset="83.2001616%"></stop>
-                 <stop stop-color="#B10EF1" offset="100%"></stop>
-              </linearGradient>
-              <path d="M40.2086259,6.21042694 C39.2480415,5.24152695 38.1027468,4.75708888 36.7727039,4.75708888 C35.4426658,4.75708888 34.3096854,5.24152695 33.3737297,6.21042694 L16.3049725,23.7622477 L12.0193093,19.3649757 C11.0833536,18.3960804 9.9503732,17.9116376 8.62033507,17.9116376 C7.29029269,17.9116376 6.14499751,18.3960804 5.1844131,19.3649757 C4.24845898,20.3338709 3.78048896,21.5077058 3.78048896,22.8865186 C3.78048896,24.2653314 4.24845898,25.4391663 5.1844131,26.4080615 L12.8690505,34.3082476 C13.8296349,35.2771428 14.9749296,35.7615833 16.3049725,35.7615833 C17.6350106,35.7615833 18.767991,35.2771428 19.7039467,34.3082476 L40.2086259,13.2535128 C41.1445816,12.2597758 41.61255,11.0797257 41.61255,9.71333379 C41.61255,8.34694665 41.1445816,7.17932216 40.2086259,6.21042694 Z" id="path-5"></path>
-              <filter x="-51.5%" y="-62.9%" width="203.1%" height="225.8%" filterUnits="objectBoundingBox" id="filter-6">
-                 <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-                 <feGaussianBlur stdDeviation="6.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-                 <feColorMatrix values="0 0 0 0 1   0 0 0 0 1   0 0 0 0 1  0 0 0 0.588937953 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-              </filter>
-           </defs>
-           <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-              <g id="Artboard-2" transform="translate(-214.000000, -272.000000)">
-                 <g id="Group-4" transform="translate(201.000000, 269.000000)">
-                    <g id="Group-3" transform="translate(58.787474, 58.534712) rotate(-6.000000) translate(-58.787474, -58.534712) translate(5.642436, 5.434712)">
-                       <g id="Group-2" transform="translate(52.899385, 53.035097) rotate(7.000000) translate(-52.899385, -53.035097) translate(5.609309, 5.785097)">
-                          <path d="M20.0219734,15.1240886 L74.1829282,14.1930575 C79.1527566,14.1076258 83.2508546,18.0672116 83.3362864,23.03704 C83.3371726,23.0885978 83.3376158,23.1401624 83.3376158,23.1917278 L83.3376158,72.0429044 C83.3376158,76.9531616 79.4018358,80.9571794 74.4923039,81.0415747 L20.3313491,81.9726057 C15.3615207,82.0580374 11.2634227,78.0984516 11.1779909,73.1286232 C11.1771047,73.0770654 11.1766615,73.0255009 11.1766615,72.9739354 L11.1766615,24.1227589 C11.1766615,19.2125016 15.1124415,15.2084838 20.0219734,15.1240886 Z" id="Rectangle" fill="url(#linearGradient-1)" transform="translate(47.257139, 48.082832) scale(-1, -1) rotate(-25.000000) translate(-47.257139, -48.082832) "></path>
-                          <g id="Rectangle" transform="translate(53.507274, 39.061929) rotate(-10.000000) translate(-53.507274, -39.061929) ">
-                             <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
-                             <use fill="#FBFBFB" fill-rule="evenodd" xlink:href="#path-2"></use>
-                          </g>
-                       </g>
-                    </g>
-                    <g id="Group-5" transform="translate(43.000000, 26.000000)">
-                       <path d="M41.1093892,10.5623533 C40.1488048,9.59345333 39.0035101,9.10901526 37.6734673,9.10901526 C36.3434291,9.10901526 35.2104488,9.59345333 34.274493,10.5623533 L17.2057358,28.1141741 L12.9200727,23.716902 C11.9841169,22.7480068 10.8511366,22.263564 9.52109843,22.263564 C8.19105605,22.263564 7.04576086,22.7480068 6.08517646,23.716902 C5.14922234,24.6857973 4.68125232,25.8596322 4.68125232,27.238445 C4.68125232,28.6172578 5.14922234,29.7910927 6.08517646,30.7599879 L13.7698139,38.660174 C14.7303983,39.6290692 15.875693,40.1135096 17.2057358,40.1135096 C18.535774,40.1135096 19.6687543,39.6290692 20.6047101,38.660174 L41.1093892,17.6054392 C42.045345,16.6117022 42.5133134,15.4316521 42.5133134,14.0652602 C42.5133134,12.698873 42.045345,11.5312485 41.1093892,10.5623533 Z" id="Page-1" fill="url(#linearGradient-4)" opacity="0.3" transform="translate(23.597283, 24.611262) rotate(-16.000000) translate(-23.597283, -24.611262) "></path>
-                       <path d="M42.0101526,14.2623533 C41.0495682,13.2934533 39.9042735,12.8090153 38.5742306,12.8090153 C37.2441925,12.8090153 36.1112121,13.2934533 35.1752564,14.2623533 L18.1064992,31.8141741 L13.820836,27.416902 C12.8848803,26.4480068 11.7518999,25.963564 10.4218618,25.963564 C9.09181941,25.963564 7.94652422,26.4480068 6.98593982,27.416902 C6.78271177,27.6272827 6.60154798,27.8473258 6.4424483,28.0770317 C5.8688243,28.9052219 5.58201568,29.8590202 5.58201568,30.938445 C5.58201568,32.3172578 6.04998569,33.4910927 6.98593982,34.4599879 L14.6705772,42.360174 C15.6311616,43.3290692 16.7764563,43.8135096 18.1064992,43.8135096 C19.4365373,43.8135096 20.5695177,43.3290692 21.5054734,42.360174 L42.0101526,21.3054392 C42.9461083,20.3117022 43.4140767,19.1316521 43.4140767,17.7652602 C43.4140767,16.398873 42.9461083,15.2312485 42.0101526,14.2623533 Z" id="Page-1" fill="url(#linearGradient-4)" opacity="0.2" transform="translate(24.498046, 28.311262) rotate(-16.000000) translate(-24.498046, -28.311262) "></path>
-                       <g id="Page-1" transform="translate(22.696519, 20.259336) rotate(-16.000000) translate(-22.696519, -20.259336) ">
-                          <use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-5"></use>
-                          <use fill="url(#linearGradient-4)" fill-rule="evenodd" xlink:href="#path-5"></use>
-                       </g>
-                    </g>
-                 </g>
-              </g>
-           </g>
-        </svg>
-     </div>
-      <h1>Lista de compras - <span>DEVinHouse</span></h1>
-    </header>
-    <main>
-      <div class="input-group mb-3" id="listStorage" hidden>
-        <label class="input-group-text bg-success" for="inputGroupSelect01"
-          >Listas de compras Salvas</label
-        >
-        <select class="form-select" id="inputGroupSelect01">
-          <option selected id>Escolher outra lista...</option>
-          <!--<option value="1">Nova Lista</option>-->
-        </select>
-      </div>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" />
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <link type="image/png" sizes="16x16" rel="icon" href="./assets/images/icons8-cesta-de-compras-16.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+</head>
 
-      <form id="newItemForm" class="item-list">
-        <div class="items">
-        <div class="content">
-          <input
-            type="text"
-            name="newItemInput"
-            id="newItemInput"
-            class="form-control"
-            placeholder="✍️ Adicione um item a lista de compras! Ex: Cebolas"
-          />
+<body>
+  <header>
+    <div class="logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="200px"
+        style="enable-background:new 0 0 512 512" xml:space="preserve">
+        <linearGradient id="a" gradientUnits="userSpaceOnUse" x1="29.686" y1="15.16" x2="487.349" y2="469.941">
+          <stop offset="0" style="stop-color:#fef050" />
+          <stop offset=".035" style="stop-color:#fae73d" />
+          <stop offset=".093" style="stop-color:#f5db22" />
+          <stop offset=".154" style="stop-color:#f2d20f" />
+          <stop offset=".215" style="stop-color:#f0cd04" />
+          <stop offset=".281" style="stop-color:#efcb00" />
+          <stop offset=".668" style="stop-color:#d99544" />
+          <stop offset=".888" style="stop-color:#cd6f3c" />
+          <stop offset="1" style="stop-color:#c34435" />
+        </linearGradient>
+        <path style="fill:url(#a)"
+          d="M450.856 132.848h-71.699a2.5 2.5 0 0 0-2.41 1.835l-10.479 37.968H335.47a2.5 2.5 0 1 0 0 5h32.702a2.5 2.5 0 0 0 2.41-1.835l10.479-37.968h69.795c4.136 0 7.5 3.364 7.5 7.5s-3.364 7.5-7.5 7.5h-56.471a2.5 2.5 0 0 0-2.41 1.835L325.39 395.929H154.492c-4.136 0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5h21.178a2.5 2.5 0 1 0 0-5h-21.178c-6.893 0-12.5 5.607-12.5 12.5 0 6.333 4.738 11.568 10.853 12.379-6.565 4.72-10.853 12.417-10.853 21.103 0 14.326 11.655 25.981 25.981 25.981 14.327 0 25.982-11.655 25.982-25.981 0-8.61-4.213-16.251-10.683-20.981h105.241c-6.47 4.73-10.683 12.371-10.683 20.981 0 14.326 11.655 25.981 25.982 25.981 14.326 0 25.981-11.655 25.981-25.981 0-8.61-4.213-16.251-10.683-20.981h8.183a2.5 2.5 0 0 0 2.41-1.835l66.585-241.246h54.568c6.893 0 12.5-5.607 12.5-12.5s-5.607-12.501-12.5-12.501zM188.955 421.91c0 11.569-9.413 20.981-20.982 20.981s-20.981-9.412-20.981-20.981 9.412-20.981 20.981-20.981 20.982 9.412 20.982 20.981zm135.838 0c0 11.569-9.412 20.981-20.981 20.981s-20.982-9.412-20.982-20.981 9.413-20.981 20.982-20.981 20.981 9.412 20.981 20.981z" />
+        <linearGradient id="b" gradientUnits="userSpaceOnUse" x1="18.373" y1="26.545" x2="476.036" y2="481.326">
+          <stop offset="0" style="stop-color:#fef050" />
+          <stop offset=".035" style="stop-color:#fae73d" />
+          <stop offset=".093" style="stop-color:#f5db22" />
+          <stop offset=".154" style="stop-color:#f2d20f" />
+          <stop offset=".215" style="stop-color:#f0cd04" />
+          <stop offset=".281" style="stop-color:#efcb00" />
+          <stop offset=".668" style="stop-color:#d99544" />
+          <stop offset=".888" style="stop-color:#cd6f3c" />
+          <stop offset="1" style="stop-color:#c34435" />
+        </linearGradient>
+        <path style="fill:url(#b)"
+          d="M224.18 375.929a2.5 2.5 0 1 0 0 5h87.886a2.5 2.5 0 0 0 2.41-1.835l50.586-183.278a2.499 2.499 0 0 0-2.409-3.165L83.5 192.649c-4.136 0-7.5-3.364-7.5-7.5 0-4.135 3.364-7.499 7.5-7.499h193.973a2.5 2.5 0 1 0 0-5H83.5c-6.893 0-12.5 5.607-12.5 12.5 0 6.22 4.573 11.379 10.53 12.328l7.907 29.891a2.502 2.502 0 0 0 4.835-1.28l-7.523-28.44 272.62.001-35.277 127.813h-144.21c-34.927 0-65.559-23.582-74.491-57.348a2.5 2.5 0 1 0-4.834 1.28c9.512 35.956 42.131 61.068 79.325 61.068h142.83l-12.548 45.465H224.18z" />
+        <linearGradient id="c" gradientUnits="userSpaceOnUse" x1="4.562" y1="40.444" x2="462.225" y2="495.225">
+          <stop offset="0" style="stop-color:#fef050" />
+          <stop offset=".035" style="stop-color:#fae73d" />
+          <stop offset=".093" style="stop-color:#f5db22" />
+          <stop offset=".154" style="stop-color:#f2d20f" />
+          <stop offset=".215" style="stop-color:#f0cd04" />
+          <stop offset=".281" style="stop-color:#efcb00" />
+          <stop offset=".668" style="stop-color:#d99544" />
+          <stop offset=".888" style="stop-color:#cd6f3c" />
+          <stop offset="1" style="stop-color:#c34435" />
+        </linearGradient>
+        <path style="fill:url(#c)"
+          d="M237.076 254.057a2.5 2.5 0 0 0 2.5-2.5v-34.902c0-6.893-5.607-12.5-12.5-12.5s-12.5 5.607-12.5 12.5v32.402h-32.403c-6.893 0-12.5 5.607-12.5 12.5s5.607 12.5 12.5 12.5h32.403v32.403c0 6.893 5.607 12.5 12.5 12.5s12.5-5.607 12.5-12.5v-32.403h32.403c6.893 0 12.5-5.607 12.5-12.5s-5.607-12.5-12.5-12.5H261.39a2.5 2.5 0 1 0 0 5h10.589c4.136 0 7.5 3.364 7.5 7.5s-3.364 7.5-7.5 7.5h-34.903a2.5 2.5 0 0 0-2.5 2.5v34.903c0 4.136-3.364 7.5-7.5 7.5s-7.5-3.364-7.5-7.5v-34.903a2.5 2.5 0 0 0-2.5-2.5h-34.903c-4.136 0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5h34.903a2.5 2.5 0 0 0 2.5-2.5v-34.902c0-4.136 3.364-7.5 7.5-7.5s7.5 3.364 7.5 7.5v34.902a2.5 2.5 0 0 0 2.5 2.5z" />
+      </svg>
+    </div>
+    <h1>Lista de compras - <span>DEVinHouse</span></h1> <hr>
+  </header>
+  <main>
+    <div class="input-group mb-3" id="listStorage" hidden>
+      <label class="input-group-text bg-success" for="inputGroupSelect01">Listas de compras Salvas</label>
+      <select class="form-select" id="inputGroupSelect01">
+        <option selected id>Escolher outra lista...</option>
+        <!--<option value="1">Nova Lista</option>-->
+      </select>
+    </div>
+
+    <div class="emptyList" hidden>
+              <div><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512"
+            width="150" xml:space="preserve">
+            <linearGradient id="a" gradientUnits="userSpaceOnUse" x1="24.69" y1="10.277" x2="482.353" y2="460.447">
+              <stop offset="0" style="stop-color:#fef050" />
+              <stop offset=".035" style="stop-color:#fae73d" />
+              <stop offset=".093" style="stop-color:#f5db22" />
+              <stop offset=".154" style="stop-color:#f2d20f" />
+              <stop offset=".215" style="stop-color:#f0cd04" />
+              <stop offset=".281" style="stop-color:#efcb00" />
+              <stop offset=".668" style="stop-color:#d99544" />
+              <stop offset=".888" style="stop-color:#cd6f3c" />
+              <stop offset="1" style="stop-color:#c34435" />
+            </linearGradient>
+            <path style="fill:url(#a)"
+              d="M72.688 211.256v19.017c0 9.138 7.435 16.572 16.572 16.572h9.691l3.529 30.756a2.5 2.5 0 0 0 4.966-.57l-3.464-30.186h304.035l-17.459 152.13c-1.121 9.77-9.383 17.136-19.216 17.136H340.15v-96.05c0-6.893-5.607-12.5-12.5-12.5s-12.5 5.607-12.5 12.5v96.05H268.5v-96.05c0-6.893-5.607-12.5-12.5-12.5s-12.5 5.607-12.5 12.5v96.05h-46.65v-96.05c0-6.893-5.607-12.5-12.5-12.5s-12.5 5.607-12.5 12.5v96.05h-31.192c-9.833 0-18.095-7.367-19.216-17.136l-8.739-76.153a2.5 2.5 0 1 0-4.967.57l8.739 76.153c1.411 12.294 11.808 21.566 24.183 21.566h230.684c12.375 0 22.771-9.271 24.183-21.566l17.524-152.701h9.691c9.138 0 16.572-7.434 16.572-16.572v-19.017c0-9.138-7.435-16.572-16.572-16.572h-80.041l84.155-84.155c3.071-3.071 3.071-8.068 0-11.139l-6.539-6.538c-3.07-3.071-8.068-3.071-11.139 0l-23.78 23.781a2.498 2.498 0 0 0 0 3.535 2.498 2.498 0 0 0 3.535 0l23.78-23.781a2.88 2.88 0 0 1 4.068 0l6.539 6.538a2.88 2.88 0 0 1 0 4.068l-88.42 88.42-.005.005-16.636 16.636a21.316 21.316 0 0 0-10.606-10.607l2.496-2.496 55.061-55.062a2.498 2.498 0 0 0 0-3.535 2.498 2.498 0 0 0-3.535 0l-54.329 54.329h-39.458a2.5 2.5 0 1 0 0 5h28.763c-10.62 1.147-18.918 10.16-18.918 21.081s8.3 19.935 18.921 21.081h-81.307c10.622-1.145 18.921-10.159 18.921-21.081 0-10.92-8.298-19.934-18.918-21.081h21.587a2.5 2.5 0 1 0 0-5h-32.282l-101.83-101.83c-3.069-3.071-8.067-3.071-11.139 0l-6.539 6.539c-3.071 3.071-3.071 8.068 0 11.139l84.156 84.155H89.26c-9.138-.001-16.572 7.433-16.572 16.571zM191.85 416.112h-15v-96.05c0-4.136 3.364-7.5 7.5-7.5s7.5 3.364 7.5 7.5v96.05zm71.65 0h-15v-96.05c0-4.136 3.364-7.5 7.5-7.5s7.5 3.364 7.5 7.5v96.05zm71.65 0h-15v-96.05c0-4.136 3.364-7.5 7.5-7.5s7.5 3.364 7.5 7.5v96.05zm-15.276-198.603 17.825-17.825h85.041c6.381 0 11.572 5.191 11.572 11.572v19.017c0 6.381-5.191 11.572-11.572 11.572H301.229c10.622-1.145 18.921-10.159 18.921-21.081 0-1.109-.111-2.191-.276-3.255zm-17.529-17.825-.148.148c-.322-.05-.639-.113-.965-.148h1.113zm-19.613 21.081c0-8.938 7.271-16.209 16.209-16.209s16.209 7.271 16.209 16.209c0 8.938-7.271 16.209-16.209 16.209s-16.209-7.272-16.209-16.209zm-71.964-21.081c-.326.035-.643.098-.965.148l-.148-.148h1.113zm2.291 4.871c8.938 0 16.209 7.271 16.209 16.209 0 8.938-7.271 16.209-16.209 16.209s-16.209-7.271-16.209-16.209c0-8.937 7.271-16.209 16.209-16.209zM88.681 106.994a2.88 2.88 0 0 1 0-4.068l6.539-6.539a2.88 2.88 0 0 1 4.068 0l102.564 102.565v.001l2.496 2.496a21.316 21.316 0 0 0-10.606 10.607l-16.638-16.638-.001-.001-88.422-88.423zm85.62 92.69 17.825 17.825a21.179 21.179 0 0 0-.277 3.256c0 10.921 8.3 19.935 18.921 21.081H89.26c-6.381 0-11.572-5.191-11.572-11.572v-19.017c0-6.381 5.191-11.572 11.572-11.572h85.041z" />
+          </svg>
+          <p>Você não possui listas de compras cadastradas, gostaria de iniciar uma nova lista?</p>
         </div>
-         <div class="actions">
-            <button type="submit" id="newItemSubmit"  class="fa fa-plus ">
-            </button>
-          </div>
-        </div>
-      </div>
-      </form>
+    </div>
 
-      <section class="item-list">
-        <div class="items" id="items">
-          <!--
+    <form id="newItemForm" class="item-list">
+      <div class="items">
+        <div class="content input-group">
+          <input type="text" name="newItemInput" id="newItemInput"
+            class="form-control animate__animated animate__flipInX"
+            placeholder="✍️ Adicione um item a lista de compras! Ex: Cebolas" />
+          <button type="submit" id="newItemSubmit" class="fa fa-plus input-group-addon "></button>
+
+        </div>
+        <p class="err text-danger text-center hidden" hidden><i class="fa fa-warning"></i> Oops! Você deve informar o
+          nome do item!</p>
+      </div>
+      </div>
+    </form>
+
+    <section class="item-list">
+      <div class="items" id="items">
+        <!--
           <div class="item">
             <div class="content">
               <input type="checkbox" name="teste" checked/> <label for="teste">teste</label> 
@@ -133,24 +125,22 @@
             </div>
            
            -->
-        </div>
+      </div>
 
-        <button>Apagar todos os Itens da Lista</button>
-        <button>Apagar itens selecionados</button>
-      </section>
-    </main>
+      <button class="btn-outline-danger animate__animated animate__fadeInUp" hidden>Apagar todos os Itens da
+        Lista</button>
+      <button class="btn-outline-info animate__animated animate__fadeInUp" hidden>Apagar itens selecionados</button>
+    </section>
+  </main>
 
-    <!-- Bootstrap JavaScript Libraries -->
-    <script src="./assets/js/app.js" type="module"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="./assets/js/app.js" type="module"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
