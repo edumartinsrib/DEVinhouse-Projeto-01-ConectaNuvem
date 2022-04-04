@@ -1,115 +1,161 @@
-html {
-  height: 100%;
-  overflow-x: hidden;
+:root {
+	--dark: #374151;
+	--darker: #1F2937;
+	--darkest: #111827;
+	--grey: #6B7280;
+	--pink: #EC4899;
+	--purple: #8B5CF6;
+	--light: #EEE;
+}
+
+* {
+	margin: 0;
+	box-sizing: border-box;
+	font-family: "Fira sans", sans-serif;
 }
 
 body {
-  background: #8e9eab; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to bottom,
-    #eef2f3,
-    #8e9eab
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to bottom,
-    #eef2f3,
-    #8e9eab
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-  background-attachment: fixed;
-  height: 100%;
-  font-family: Arial, Helvetica, sans-serif;
-}
-p{
-    color: #fff;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	color: #FFF;
+	background-color: var(--dark);
 }
 
-/*--------------------------------------------------------------
-# Header
---------------------------------------------------------------*/
-
-nav.navbar-transparente {
-  padding: 10px 0px;
-  background: rgba(0, 0, 0, 0.85);
+header {
+	padding: 2rem 1rem;
+	max-width: 800px;
+	width: 100%;
+	margin: 0 auto;
 }
 
-.navbar-light .navbar-nav .nav-link {
-  color: white;
-  margin: auto;
+header h1{ 
+	font-size: 2.5rem;
+	font-weight: 300;
+	color: var(--grey);
+	margin-bottom: 1rem;
 }
 
-.navbar-light .navbar-nav .nav-link:hover {
-  color: #00ff73;
+#newItemForm {
+	display: flex;;
 }
 
-.navbar-light .navbar-toggler {
-  color: #fff;
-  border-color: #00ff73;
-  margin: 15px;
+input, button {
+	
+	border: none;
+	outline: none;
+	background: none;
 }
 
-
-/*------------- Main ---------------------*/
-/* From cssbuttons.io by @adamgiebl */
-
-
-li{ 
-    color: #fff;
+#newItemInput {
+	flex: 1 1 0%;
+	background-color: var(--darker);
+	padding: 1rem;
+	border-radius: 1rem;
+	margin-right: 1rem;
+	color: var(--light);
+	font-size: 1.25rem;
 }
 
-.inputData {
-  align-items: center;
-  margin: 0 auto;
-  width: 50%;
+#newItemInput::placeholder {
+	color: var(--grey);
 }
 
-
-
-
-/*------------- Botão ---------------------*/
-/* From cssbuttons.io by @adamgiebl */
-
-.cssbuttons-io-button {
-  display: flex;
-  align-items: center;
-  font-family: inherit;
-  font-weight: 500;
-  font-size: 16px;
-  padding: 0.7em 1.4em 0.7em 1.1em;
-  color: white;
-  background: #ad5389;
-  background: linear-gradient(
-    0deg,
-    rgba(20, 167, 62, 1) 0%,
-    rgba(102, 247, 113, 1) 100%
-  );
-  border: none;
-  box-shadow: 0 0.7em 1.5em -0.5em #14a73e98;
-  letter-spacing: 0.05em;
-  border-radius: 20em;
+#newItemSubmit {
+	color: var(--pink);
+	font-size: 1.25rem;
+	font-weight: 700;
+	background-image: linear-gradient(to right, var(--pink), var(--purple));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	cursor: pointer;
+	transition: 0.4s;
 }
 
-.cssbuttons-io-button svg {
-  margin-right: 6px;
+#newItemSubmit:hover {
+	opacity: 0.8;
 }
 
-.cssbuttons-io-button:hover {
-  box-shadow: 0 0.5em 1.5em -0.5em #14a73e98;
+#newItemSubmit:active {
+	opacity: 0.6;
 }
 
-.cssbuttons-io-button:active {
-  box-shadow: 0 0.3em 1em -0.5em #14a73e98;
+main {
+	flex: 1 1 0%;
+	max-width: 800px;
+	width: 100%;
+	margin: 0 auto;
 }
 
-
-@media (max-width: 1366px) {
-    .inputData {
-        align-items: center;
-        margin: 0 auto;
-        width: 100%;
-      }
-
+.item-list {
+	padding: 1rem;
 }
 
+.item-list h2 {
+	font-size: 1.5rem;
+	font-weight: 300;
+	color: var(--grey);
+	margin-bottom: 1rem;
+}
 
-  
+.items .item {
+	display: flex;
+	justify-content: space-between;
+	background-color: var(--darkest);
+	padding: 1rem;
+	border-radius: 1rem;
+	margin-bottom: 1rem;
+}
+
+.item .content {
+	flex: 1 1 0%;
+}
+
+.item .content .text {
+	color: var(--light);
+	font-size: 1.125rem;
+	width: 100%;
+	display: block;
+	transition: 0.4s;
+}
+
+.item .content .text:not(:read-only) {
+	color: var(--pink);
+}
+
+.item .actions {
+	display: flex;
+	margin: 0 -0.5rem;
+}
+
+.item .actions button {
+	cursor: pointer;
+	margin: 0 0.5rem;
+	font-size: 1.125rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	transition: 0.4s;
+}
+
+.item .actions button:hover {
+	opacity: 0.8;
+}
+
+.item .actions button:active {
+	opacity: 0.6;
+}
+
+.item .actions .edit {
+	background-image: linear-gradient(to right, var(--pink), var(--purple));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.item .actions .delete {
+	color: crimson;
+}
+
+input[type=checkbox]:checked ~ .lineThrough {
+	color: #ccc;
+	text-decoration: line-through
+  }

@@ -1,55 +1,49 @@
 
-import {salvarStorage, loadItens} from './Storage.js'
 
-// Declaração dos campos
-const btnAdd = document.getElementById("btnAddItem");
-const iptItem = document.getElementById("iptItem");
-const iptQtd = document.getElementById("iptQtd");
-export const listaItens = document.getElementById("listaUl");
+const newItemElement = (itemInput,idInput) => {
+  const divItem = document.createElement("div");
+  divItem.classList.add("item");
+  divItem.innerHTML = `
+  <div class="content">
+    <input type="checkbox" name="${idInput}"/> <label for="${idInput}" class="lineThrough itemList"> ${itemInput}</label> 
+  </div>
+  <div class="actions">
+    <button class="edit">Editar</button>
+    <button class="delete">Apagar</button>
+  </div>   
+  `;
+  return divItem;
+};
+
+
+let arrItem = [];
+
+function addItem(text, value, qtd){
+  const itemArray = {text, checked: false, id: Date.now(), value: 0, qtd: 0} 
+  arrItem.push(itemArray);
+  console.log(arrItem);
+}
 
 
 
-//Função para criar Itens da Lista
-function criaLi() {
-    const li = document.createElement("li"); //cria o elemento LI
-    li.setAttribute("name", "LI"); //atribui o nome LI ao elemento criado
-    return li; //retorna o elemento na função para o adiciona item
-  }
+
+function newItem(itemInput) {
+  addItem(itemInput,0,0)
+  const addItemElement = newItemElement(itemInput,itemInput);
   
-  //Função para adicionar itens na lista
-export function adicionaItem(nomeProduto, qtdProduto) {
-    const li = criaLi(); //Retorna o LI criado
-  
-    li.innerHTML = `${nomeProduto} - ${qtdProduto}`; //Dados do input vão preencher o innerhtml do LI criado anteriormente
-    console.log("adicionaItem ~ criaLi", li)
-    
-  
-    
-    listaItens.appendChild(li); //Adiciona o LI como filho do UL (listaItens)
-    limpaInput(); //Limpa o Campo Input após inclusão do item
-   // botaoDeletarItem(li); //Inclui o botão 'apagar' nos items LI's criados
-    salvarStorage(); //Salva-Atualiza o LocalStorage
-  };
-  
-  //função para limpar input e ajustar foco no input
-function limpaInput() {
-    iptItem.value = "";
-    iptItem.focus();
-  }
+  document.getElementById("items").appendChild(addItemElement);
+}
 
-  btnAdd.addEventListener('click', () => {
-    iptItem.value ? adicionaItem(iptItem.value, iptQtd.value) : alert('Campo item não pode estar em branco!')
 
-  });
+function updateStorage() {
+  const itensJSON = JSON.stringify(arrItem);
+  localStorage.setItem("listShop", itensJSON);
 
-  /*
-function botaoDeletarItem(li) {
-    li.innerHTML += " ";
-    const botaoDeletar = document.createElement("button");
-    botaoDeletar.innerHTML = "Apagar";
-    botaoDeletar.setAttribute("class", "apagar btn");
-    li.appendChild(botaoDeletar);
-  }
-  */
+}
 
-  loadItens()
+
+newItem("Cebola");
+newItem("Alho");
+newItem("Manjericão");
+
+updateStorage();
