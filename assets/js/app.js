@@ -8,8 +8,8 @@ const newItemElement = (itemInput,idInput) => {
     <input type="checkbox" name="${idInput}"/> <label for="${idInput}" class="lineThrough itemList"> ${itemInput}</label> 
   </div>
   <div class="actions">
-    <button class="edit">Editar</button>
-    <button class="delete">Apagar</button>
+    <button class="edit">-</button>
+    <button class="delete">x</button>
   </div>   
   `;
   return divItem;

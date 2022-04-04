@@ -11,7 +11,7 @@
 * {
 	margin: 0;
 	box-sizing: border-box;
-	font-family: "Fira sans", sans-serif;
+	font-family: 'Nunito', sans-serif;
 }
 
 body {
@@ -19,7 +19,7 @@ body {
 	flex-direction: column;
 	min-height: 100vh;
 	color: #FFF;
-	background-color: var(--dark);
+	background-color: var(--darker);
 }
 
 header {
@@ -27,18 +27,16 @@ header {
 	max-width: 800px;
 	width: 100%;
 	margin: 0 auto;
+	text-align: center;
 }
 
 header h1{ 
 	font-size: 2.5rem;
 	font-weight: 300;
-	color: var(--grey);
+	color: var(--light);
 	margin-bottom: 1rem;
 }
 
-#newItemForm {
-	display: flex;;
-}
 
 input, button {
 	
@@ -49,11 +47,11 @@ input, button {
 
 #newItemInput {
 	flex: 1 1 0%;
-	background-color: var(--darker);
+	background-color: var(--light);
 	padding: 1rem;
 	border-radius: 1rem;
 	margin-right: 1rem;
-	color: var(--light);
+	color: var(--dark);
 	font-size: 1.25rem;
 }
 
@@ -80,9 +78,10 @@ input, button {
 	opacity: 0.6;
 }
 
+
 main {
 	flex: 1 1 0%;
-	max-width: 800px;
+	max-width: 600px;
 	width: 100%;
 	margin: 0 auto;
 }
@@ -101,11 +100,14 @@ main {
 .items .item {
 	display: flex;
 	justify-content: space-between;
-	background-color: var(--darkest);
+	background-color: var(--light);
+	color: var(--darkest);
 	padding: 1rem;
 	border-radius: 1rem;
 	margin-bottom: 1rem;
 }
+
+
 
 .item .content {
 	flex: 1 1 0%;
@@ -159,3 +161,55 @@ input[type=checkbox]:checked ~ .lineThrough {
 	color: #ccc;
 	text-decoration: line-through
   }
+
+  
+.add-control {
+	
+	position: relative;
+  }
+  .add-control .form-control {
+	padding-right: 25px;
+  }
+  .add-control .refresh {
+	position: absolute;
+	top: 8px;
+	right: 0;
+	font-size: 14px;
+	-webkit-transform: translateX(100%);
+			transform: translateX(100%);
+	margin-right: -10px;
+	cursor: pointer;
+	color: #9da1af;
+	-webkit-transition: color 0.15s linear;
+	transition: color 0.15s linear;
+  }
+  .add-control .refresh:hover {
+	color: #666;
+  }
+  .form-control,
+  .form-control:focus,
+  .form-control:active,
+  .form-control:active:focus {
+	border: none;
+	padding: 10px 15px;
+	outline: none;
+  }
+  .form-control {
+	-webkit-box-shadow: none;
+			box-shadow: none;
+	-webkit-transition: all 0.2s linear;
+	transition: all 0.2s linear;
+  }
+  .form-control:focus {
+	-webkit-box-shadow: 0 0 15px rgba(0,0,0,0.2);
+			box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  }
+.input-group-addon{
+
+	
+}
+/* 
+outra formatação
+   */
+
+   
