@@ -41,11 +41,13 @@ function renderScreen() {
     return;
   }
   let htmlCode = "";
+  let checkedValue = "";
 
   items.forEach((item) => {
+    checkedValue = item.checked ? "checked" : "";
     htmlCode += `
-    <li class="content input-group" id="${item.id}">
-    <input type="checkbox" class="form-check-input chk" id="chk-${item.id}"/> 
+    <li class="content input-group ${checkedValue}" id="${item.id}">
+    <input type="checkbox" class="form-check-input chk" ${checkedValue} id="chk-${item.id}"/> 
   
     <span id="txt-${item.id} "class="lineThrough text itemList"> ${item.text}</span> 
     <button id="btn-${item.id}" class="delete action fa-solid fa-trash-can">X</button> 
@@ -75,13 +77,41 @@ function renderScreen() {
   var buttons = document.getElementsByClassName("chk"); // Pegamos todos os elementos do DOM que possuem a class 'remove' e armazenamos na variável 'buttons'.
 
   for (var i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener("click", removeItem);
+    buttons[i].addEventListener("click", boxChecked);
   }
 }
 
-var boxChecked = function (){
-  
-}
+var boxChecked = function () {
+  var parent = this.parentNode
+
+  if (this.checked) {
+    parent.classList.add("checked");
+    parent.classList.add("animate__animated");
+    parent.classList.add("animate__flipInX");
+  } else {
+    parent.classList.remove("checked");
+    parent.classList.remove("animate__animated");
+    parent.classList.remove("animate__flipInX");
+    parent.classList.add("noChecked");
+  }
+
+  var id = this.getAttribute("id"); // variável id criada para receber o atual objeto-DOM referente ao id do botão remover que o usuário clicar. O this representa o objeto-DOM atual.
+
+  id = id.replace("chk-", "");
+  arrItem = getList(); //
+
+  let result = arrItem.filter(function (el) {
+    return el.id == id;
+  });
+
+  for (let element of result) {
+    let index = arrItem.indexOf(element);
+    arrItem[index].checked = this.checked;
+  }
+
+  localStorage.setItem(listLocalStorage, JSON.stringify(arrItem)); //
+  //
+};
 
 var contentEditable = function () {
   const addAttributte = this.setAttribute("contenteditable", true);
