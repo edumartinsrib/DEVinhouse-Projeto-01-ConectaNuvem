@@ -36,7 +36,7 @@ function renderScreen() {
 
   items.forEach((item) => {
     htmlCode += `
-    <li class="content animate__animated animate__fadeIn" id="${item.id}">
+    <li class="content " id="${item.id}">
     <input type="checkbox" class="form-check-input chk" id="chk-${item.id}"/> 
   
     <span id="txt-${item.id} "class="lineThrough itemList" contenteditable="true"> ${item.text}</span> 
@@ -45,8 +45,10 @@ function renderScreen() {
   });
   listBox.innerHTML = htmlCode;
 
-  //Disparo dos eventos dinâmicos
+  //-----------------Disparo dos eventos dinâmicos -----------------
+
   //Deletar Item da Lista
+
   var buttons = document.getElementsByClassName("delete"); // Pegamos todos os elementos do DOM que possuem a class 'remove' e armazenamos na variável 'buttons'.
   for (var i = 0; i < buttons.length; i++) {
     // Iteramos nossos elementos e adicionamos para cada elemento com a class 'remove' o addEventListener conectado com o evento 'click' e o callback da função.
@@ -117,76 +119,28 @@ const getList = function () {
 
 renderScreen();
 
-//delete item array/element html by id
+// Get the modal
+var modal = document.getElementById("myModal");
 
-/* function deleteById(array, id) {
-  let result = array.filter(function (el) {
-    return el.id == id;
-  });
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
 
-  for (let element of result) {
-    let index = array.indexOf(element);
-    array.splice(index, 1);
-  }
-} */
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
 
-/*
-
-function idArray(array, id) {
-  return array.id === id;
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
 }
 
-//Add Item in Array
-
-//Add Item - master function
-function newItem(itemInput, id) {
-  const addItemElement = newItemElement(itemInput, id);
-  document.getElementById("items").appendChild(addItemElement);
-
-  updateStorage();
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
 }
 
-//update the local storage
-function updateStorage() {
-  const itensJSON = JSON.stringify(arrItem);
-  localStorage.setItem(listLocalStorage, itensJSON);
-}
-
-//create Event Listener in all '.btn' elements
-function createBtnEventListener() {
-  //get all ".btn" elements in array format
-  let btnDel = document.querySelectorAll(".delete");
-  for (let item of btnDel) {
-    item.addEventListener("click", () => {
-      deleteById(arrItem, item.name);
-    });
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
   }
 }
-
-//create Event Listener in all '.btn' elements
-function createCheckEventListener() {
-
-  let checkEl = document.querySelectorAll(".chk"); //get all ".btn" elements in array format
-  for (let item of checkEl) {
-    item.addEventListener("click", () => {
-
-  //Update Array/LocalStorage
-     const novoArray = arrItem.find(itens => itens.id === item.id);
-     console.log("item.addEventListener ~ novoArray", novoArray)
-
-    });
-  }
-} */
-
-//Create new Item in HTML
-/* const newItemElement = (itemInput, idInput) => {
-  return `
-  <div class="content animate__animated animate__fadeIn" name="${idInput}">
-    <input type="checkbox" class="form-check-input chk" id="${idInput}"/> <label for="${idInput}" class="lineThrough itemList"> ${itemInput}</label> 
-  </div>
-  <div class="actions">
-
-    <button name="${idInput}" class="delete fa-solid fa-trash-can">X</button>
-  </div>   
-  `;
-}; */
