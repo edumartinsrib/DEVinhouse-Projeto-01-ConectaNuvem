@@ -2,32 +2,25 @@
 const inputItem = document.getElementById("newItemInput");
 const formSubmit = document.getElementById("newItemForm");
 const listBox = document.getElementById("items");
+const listLocalStorage = 'listShop'
 
-const arrItem = [];
-
-let array = localStorage.getItem("listShop");
-if (array){
-arrItem.push = JSON.parse(array);
-}
+let arrItem = [];
 
 
 // search list in localStorange
-const listJSON = localStorage.getItem("listShop");
+const listJSON = JSON.parse(localStorage.getItem(listLocalStorage));
 
-// Verifica se tem algo no storage
-/* if(listJSON){
-    arrItem.fill = JSON.parse(listJSON);
-    renderScreen();
-} */
+if (listJSON != null) {
+  arrItem = listJSON
+}
 
 //Listener Events
 formSubmit.addEventListener("submit", (e) => {
   e.preventDefault();
-  console.log(arrItem)
-  
+
   addItem(inputItem.value.trim(), 0, 0);
 
-  localStorage.setItem("listShop", JSON.stringify(arrItem));
+  localStorage.setItem(listLocalStorage, JSON.stringify(arrItem));
 
   inputItem.value = "";
   inputItem.focus();
@@ -35,10 +28,10 @@ formSubmit.addEventListener("submit", (e) => {
 });
 
 function renderScreen() {
-  const items = JSON.parse(localStorage.getItem('listShop'));
-  console.log("renderScreen ~ items", items)
+  const items = JSON.parse(localStorage.getItem(listLocalStorage));
 
-  if(!items){
+
+  if (!items) {
     return
   }
   let htmlCode = "";
@@ -46,19 +39,42 @@ function renderScreen() {
   items.forEach((item) => {
     htmlCode += `
     <li class="content animate__animated animate__fadeIn" id="${item.id}">
-    <input type="checkbox" class="form-check-input chk" id="${item.id}"/> <label for="${item.id}" class="lineThrough itemList"> ${item.text}</label> <button id="${item.id}" onclick='function deleteTodo(${item.id})' class="delete fa-solid fa-trash-can">X</button> 
+    <input type="checkbox" class="form-check-input chk" id="chk-${item.id}"/> <label for="label-${item.id}" class="lineThrough itemList"> ${item.text}</label> <button id="btn-${item.id}" class="delete fa-solid fa-trash-can">X</button> 
     </li>`;
   });
-  listBox.innerHTML = htmlCode; 
+  listBox.innerHTML = htmlCode;
+
+  //Disparo dos eventos dinâmicos
+  //Deletar Item da Lista
+  var buttons = document.getElementsByClassName('delete'); // Pegamos todos os elementos do DOM que possuem a class 'remove' e armazenamos na variável 'buttons'.
+  for (var i = 0; i < buttons.length; i++) { // Iteramos nossos elementos e adicionamos para cada elemento com a class 'remove' o addEventListener conectado com o evento 'click' e o callback da função 'removeTodo'.
+    buttons[i].addEventListener('click', removeTodo);
+  };
+
+  //Editar Item da Lista
+
+  
+  
+}
+var removeTodo = function () {
+  var id = this.getAttribute('id') // variável id criada para receber o atual objeto-DOM referente ao id do botão remover que o usuário clicar. O this representa o objeto-DOM atual.
+  id = id.replace('btn-', ''); 
+  arrItem = getList(); // 
+
+  let result = arrItem.filter(function (el) {
+    return el.id == id;
+  });
+
+  for (let element of result) {
+    let index = arrItem.indexOf(element);
+    arrItem.splice(index, 1);
+  }
+
+  localStorage.setItem(listLocalStorage, JSON.stringify(arrItem)); // 
+  renderScreen(); // Render Screen
 }
 
-function itemDone(){
 
-}
-
-function deleteItems(){
-
-}
 
 function addItem(text, value, qtd) {
   const newID = Date.now() * Math.random();
@@ -66,20 +82,18 @@ function addItem(text, value, qtd) {
   arrItem.push(itemArray);
 }
 
-function deleteTodo(ind) {
-  console.log("ind", ind)
-  let array = localStorage.getItem("listShop");
-  arrItem = JSON.parse(array);
-  arrItem.splice(ind, 1);
-  localStorage.setItem("listShop", JSON.stringify(arrItem));
-  renderScreen();
+const getList = function () {
+
+  var getList_string = localStorage.getItem(listLocalStorage); // Pega o conteúdo/valor da chave 'todos' do 'localStorage' e armazena na variável 'todos_string'
+  if (getList_string != null) { // Verifica se o array de elementos não é nulo. Caso true então retornará a conversão de um JSON string para um Javascript data.
+    return JSON.parse(getList_string);
+  }
 }
 
+renderScreen();
 
 
 //delete item array/element html by id
-
-
 
 /* function deleteById(array, id) {
   let result = array.filter(function (el) {
@@ -92,53 +106,12 @@ function deleteTodo(ind) {
   }
 } */
 
-renderScreen();
-/* 
 
-
-
-//create Event Listener in all '.btn' elements
-function createBtnEventListener() {
-  //get all ".btn" elements in array format
-  let btnDel = document.querySelectorAll(".delete");
-  for (let item of btnDel) {
-    item.addEventListener("click", () => {
-      deleteById(arrItem, item.name);
-    });
-  }
-}
-
-//create Event Listener in all '.btn' elements
-function createCheckEventListener() {
-  
-  let checkEl = document.querySelectorAll(".chk"); //get all ".btn" elements in array format
-  for (let item of checkEl) {
-    item.addEventListener("click", () => {
-
-  //Update Array/LocalStorage 
-     const novoArray = arrItem.find(itens => itens.id === item.id);
-     console.log("item.addEventListener ~ novoArray", novoArray)
-
-    });
-  }
-} */
+/*
 
 function idArray(array, id) {
   return array.id === id;
 }
-
-//Create new Item in HTML
-/* const newItemElement = (itemInput, idInput) => {
-  return `
-  <div class="content animate__animated animate__fadeIn" name="${idInput}">
-    <input type="checkbox" class="form-check-input chk" id="${idInput}"/> <label for="${idInput}" class="lineThrough itemList"> ${itemInput}</label> 
-  </div>
-  <div class="actions">
-
-    <button name="${idInput}" class="delete fa-solid fa-trash-can">X</button>
-  </div>   
-  `;
-}; */
 
 //Add Item in Array
 
@@ -153,5 +126,44 @@ function newItem(itemInput, id) {
 //update the local storage
 function updateStorage() {
   const itensJSON = JSON.stringify(arrItem);
-  localStorage.setItem("listShop", itensJSON);
+  localStorage.setItem(listLocalStorage, itensJSON);
 }
+
+//create Event Listener in all '.btn' elements
+function createBtnEventListener() {
+  //get all ".btn" elements in array format
+  let btnDel = document.querySelectorAll(".delete");
+  for (let item of btnDel) {
+    item.addEventListener("click", () => {
+      deleteById(arrItem, item.name);
+    });
+  }
+}
+
+//create Event Listener in all '.btn' elements
+function createCheckEventListener() {
+
+  let checkEl = document.querySelectorAll(".chk"); //get all ".btn" elements in array format
+  for (let item of checkEl) {
+    item.addEventListener("click", () => {
+
+  //Update Array/LocalStorage
+     const novoArray = arrItem.find(itens => itens.id === item.id);
+     console.log("item.addEventListener ~ novoArray", novoArray)
+
+    });
+  }
+} */
+
+//Create new Item in HTML
+/* const newItemElement = (itemInput, idInput) => {
+  return `
+  <div class="content animate__animated animate__fadeIn" name="${idInput}">
+    <input type="checkbox" class="form-check-input chk" id="${idInput}"/> <label for="${idInput}" class="lineThrough itemList"> ${itemInput}</label> 
+  </div>
+  <div class="actions">
+
+    <button name="${idInput}" class="delete fa-solid fa-trash-can">X</button>
+  </div>   
+  `;
+}; */
