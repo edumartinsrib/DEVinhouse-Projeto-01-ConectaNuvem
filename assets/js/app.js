@@ -1,47 +1,99 @@
 //Get Elementes
 const inputItem = document.getElementById("newItemInput");
 const formSubmit = document.getElementById("newItemForm");
-const listBox = document.getElementById('items');
+const listBox = document.getElementById("items");
 
 const arrItem = [];
 
-//Listener Events
-formSubmit.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const valueInput = inputItem.value.trim();
-
-  if (valueInput) {
-    const newID = addItem(valueInput, 0, 0);
-    newItem(valueInput, newID);
-    inputItem.value = "";
-    inputItem.focus();
-    createBtnEventListener();
-    createCheckEventListener();
-  }
-});
-
-//delete item array/element html by id
-function deleteById(array, id) {
-  try {
-    let element = document.getElementById(id);
-    let result = array.filter(function (el) {
-      return el.id == id;
-    });
-
-    for (let elemento of result) {
-      let index = array.indexOf(elemento);
-      array.splice(index, 1);
-    }
-
-    element.remove(); //delete element html
-
-  } catch (erro) {
-
-  } finally {
-    updateStorage(); //Update Local Storage
-  }
+let array = localStorage.getItem("listShop");
+if (array){
+arrItem.push = JSON.parse(array);
 }
 
+
+// search list in localStorange
+const listJSON = localStorage.getItem("listShop");
+
+// Verifica se tem algo no storage
+/* if(listJSON){
+    arrItem.fill = JSON.parse(listJSON);
+    renderScreen();
+} */
+
+//Listener Events
+formSubmit.addEventListener("submit", (e) => {
+  e.preventDefault();
+  console.log(arrItem)
+  
+  addItem(inputItem.value.trim(), 0, 0);
+
+  localStorage.setItem("listShop", JSON.stringify(arrItem));
+
+  inputItem.value = "";
+  inputItem.focus();
+  renderScreen();
+});
+
+function renderScreen() {
+  const items = JSON.parse(localStorage.getItem('listShop'));
+  console.log("renderScreen ~ items", items)
+
+  if(!items){
+    return
+  }
+  let htmlCode = "";
+
+  items.forEach((item) => {
+    htmlCode += `
+    <li class="content animate__animated animate__fadeIn" id="${item.id}">
+    <input type="checkbox" class="form-check-input chk" id="${item.id}"/> <label for="${item.id}" class="lineThrough itemList"> ${item.text}</label> <button id="${item.id}" onclick='function deleteTodo(${item.id})' class="delete fa-solid fa-trash-can">X</button> 
+    </li>`;
+  });
+  listBox.innerHTML = htmlCode; 
+}
+
+function itemDone(){
+
+}
+
+function deleteItems(){
+
+}
+
+function addItem(text, value, qtd) {
+  const newID = Date.now() * Math.random();
+  const itemArray = { text, checked: false, id: newID, value: value, qtd: qtd };
+  arrItem.push(itemArray);
+}
+
+function deleteTodo(ind) {
+  console.log("ind", ind)
+  let array = localStorage.getItem("listShop");
+  arrItem = JSON.parse(array);
+  arrItem.splice(ind, 1);
+  localStorage.setItem("listShop", JSON.stringify(arrItem));
+  renderScreen();
+}
+
+
+
+//delete item array/element html by id
+
+
+
+/* function deleteById(array, id) {
+  let result = array.filter(function (el) {
+    return el.id == id;
+  });
+
+  for (let element of result) {
+    let index = array.indexOf(element);
+    array.splice(index, 1);
+  }
+} */
+
+renderScreen();
+/* 
 
 
 
@@ -69,12 +121,11 @@ function createCheckEventListener() {
 
     });
   }
-}
+} */
 
 function idArray(array, id) {
   return array.id === id;
 }
-
 
 //Create new Item in HTML
 /* const newItemElement = (itemInput, idInput) => {
@@ -89,34 +140,7 @@ function idArray(array, id) {
   `;
 }; */
 
-function renderScreen(){
-    let listItems = localStorage.getItem("listShop");
-    if (listItems === null) {
-      arrItem = [];
-    } else {
-      arrItem = JSON.parse(listItems);
-    }
-    let htmlCode = "";
-    arrItem.forEach((list, ind) => {
-      htmlCode += `
-      <div class="content animate__animated animate__fadeIn" name="${ind}">
-    <input type="checkbox" class="form-check-input chk" id="${ind}"/> <label for="${ind}" class="lineThrough itemList"> ${list}</label> 
-  </div>
-  <div class="actions">
-    <button name="${ind}" class="delete fa-solid fa-trash-can">X</button>
-  </div>  `;
-    });
-    listBox.innerHTML = htmlCode;
-   }
-
-
 //Add Item in Array
-function addItem(text, value, qtd) {
-  const newID = Date.now() * Math.random();
-  const itemArray = { text, checked: false, id: newID, value: value, qtd: qtd };
-  arrItem.push(itemArray);
-  return newID;
-}
 
 //Add Item - master function
 function newItem(itemInput, id) {
