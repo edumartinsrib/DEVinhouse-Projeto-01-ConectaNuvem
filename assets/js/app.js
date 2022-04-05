@@ -1,6 +1,7 @@
 //Get Elementes
 const inputItem = document.getElementById("newItemInput");
 const formSubmit = document.getElementById("newItemForm");
+const listBox = document.getElementById('items');
 
 const arrItem = [];
 
@@ -36,15 +37,13 @@ function deleteById(array, id) {
 
   } catch (erro) {
 
-  } finally{
+  } finally {
     updateStorage(); //Update Local Storage
   }
 }
 
-//Update Array/LocalStorage 
-function updateById(array, id){
-  
-}
+
+
 
 //create Event Listener in all '.btn' elements
 function createBtnEventListener() {
@@ -59,21 +58,27 @@ function createBtnEventListener() {
 
 //create Event Listener in all '.btn' elements
 function createCheckEventListener() {
-  //get all ".btn" elements in array format
-  let checkEl = document.querySelectorAll(".chk");
+  
+  let checkEl = document.querySelectorAll(".chk"); //get all ".btn" elements in array format
   for (let item of checkEl) {
     item.addEventListener("click", () => {
-      updateById(arrItem, item.id);
+
+  //Update Array/LocalStorage 
+     const novoArray = arrItem.find(itens => itens.id === item.id);
+     console.log("item.addEventListener ~ novoArray", novoArray)
+
     });
   }
 }
 
+function idArray(array, id) {
+  return array.id === id;
+}
+
+
 //Create new Item in HTML
-const newItemElement = (itemInput, idInput) => {
-  const divItem = document.createElement("div");
-  divItem.classList.add("item");
-  divItem.setAttribute("id", idInput);
-  divItem.innerHTML = `
+/* const newItemElement = (itemInput, idInput) => {
+  return `
   <div class="content animate__animated animate__fadeIn" name="${idInput}">
     <input type="checkbox" class="form-check-input chk" id="${idInput}"/> <label for="${idInput}" class="lineThrough itemList"> ${itemInput}</label> 
   </div>
@@ -81,9 +86,29 @@ const newItemElement = (itemInput, idInput) => {
 
     <button name="${idInput}" class="delete fa-solid fa-trash-can">X</button>
   </div>   
-  `; 
-  return divItem;
-};
+  `;
+}; */
+
+function renderScreen(){
+    let listItems = localStorage.getItem("listShop");
+    if (listItems === null) {
+      arrItem = [];
+    } else {
+      arrItem = JSON.parse(listItems);
+    }
+    let htmlCode = "";
+    arrItem.forEach((list, ind) => {
+      htmlCode += `
+      <div class="content animate__animated animate__fadeIn" name="${ind}">
+    <input type="checkbox" class="form-check-input chk" id="${ind}"/> <label for="${ind}" class="lineThrough itemList"> ${list}</label> 
+  </div>
+  <div class="actions">
+    <button name="${ind}" class="delete fa-solid fa-trash-can">X</button>
+  </div>  `;
+    });
+    listBox.innerHTML = htmlCode;
+   }
+
 
 //Add Item in Array
 function addItem(text, value, qtd) {
@@ -97,7 +122,7 @@ function addItem(text, value, qtd) {
 function newItem(itemInput, id) {
   const addItemElement = newItemElement(itemInput, id);
   document.getElementById("items").appendChild(addItemElement);
-  
+
   updateStorage();
 }
 
