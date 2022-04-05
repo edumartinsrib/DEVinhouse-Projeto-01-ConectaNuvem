@@ -24,17 +24,17 @@ body {
 
 header {
   padding: 2rem 1rem;
-  max-width: 800px;
+  max-width: 678px;
   width: 100%;
   margin: 0 auto;
   text-align: center;
 }
 
-.emptyList{
-	text-align: center;
-	max-width: 800px;
-	width: 100%;
-	margin: 0 auto;
+.emptyList {
+  text-align: center;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 header h1 {
@@ -80,6 +80,7 @@ button {
   font-size: 1.25rem;
   font-weight: 700;
   background-image: linear-gradient(to right, var(--pink), var(--purple));
+  background-clip:text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   cursor: pointer;
@@ -102,43 +103,93 @@ main {
 }
 
 .item-list {
-  padding: 1rem;
+  padding: 0.6rem;
+  
 }
 
-.item-list h2 {
-  font-size: 1.5rem;
-  font-weight: 300;
-  color: var(--grey);
-  margin-bottom: 1rem;
+#text {
+  justify-content:left
 }
 
-.items .item {
+#action {
+  
+}
+
+ul{
+  padding-left: 0;
+}
+
+li {
   display: flex;
-  justify-content: space-between;
-  background-color: var(--light);
+  flex-direction:row;
+  flex-wrap: wrap;
+  background-color: var(--dark);
+  
   color: var(--darkest);
-  padding: 0.5rem;
+  left: 0;
+  padding: 0.3rem;
   border-radius: 1rem;
   margin-bottom: 1rem;
 }
 
-.item .content {
-  flex: 1 1 0%;
+.text{
+  flex-grow: 1;
+  position: relative;
+  left: 5px;
 }
 
-.item .content .text {
-  color: var(--light);
-  font-size: 1.125rem;
-  width: 100%;
-  display: block;
-  transition: 0.4s;
-}
-
-.item .content .text:not(:read-only) {
+.action{
   color: var(--pink);
+  font-size: 1.25rem;
+  font-weight: 700;
+  background-image: linear-gradient(to right, var(--pink), var(--purple));
+  background-clip:text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  cursor: pointer;
 }
 
-.item .actions {
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 500px; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 
+.actions {
   display: flex;
   margin: 0 -0.5rem;
 }
@@ -214,43 +265,4 @@ input[type="checkbox"]:checked ~ .lineThrough {
 .form-control:focus {
   -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-}
-
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content/Box */
-.modal-content {
-  
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 500px; /* Could be more or less, depending on screen size */
-}
-
-/* The Close Button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
+} */

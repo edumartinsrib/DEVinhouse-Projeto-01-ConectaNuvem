@@ -2,6 +2,7 @@
 const inputItem = document.getElementById("newItemInput");
 const formSubmit = document.getElementById("newItemForm");
 const listBox = document.getElementById("items");
+const nullInput = document.querySelector(".hidden");
 const listLocalStorage = "listShop";
 
 let arrItem = [];
@@ -16,6 +17,13 @@ if (listJSON != null) {
 //Listener Events
 formSubmit.addEventListener("submit", (e) => {
   e.preventDefault();
+
+  if (!inputItem.value) {
+    nullInput.hidden = false;
+    return;
+  } else {
+    nullInput.hidden = true;
+  }
 
   addItem(inputItem.value.trim(), 0, 0);
 
@@ -36,34 +44,49 @@ function renderScreen() {
 
   items.forEach((item) => {
     htmlCode += `
-    <li class="content " id="${item.id}">
+    <li class="content input-group" id="${item.id}">
     <input type="checkbox" class="form-check-input chk" id="chk-${item.id}"/> 
   
-    <span id="txt-${item.id} "class="lineThrough itemList" contenteditable="true"> ${item.text}</span> 
-    <button id="btn-${item.id}" class="delete fa-solid fa-trash-can">X</button> 
+    <span id="txt-${item.id} "class="lineThrough text itemList"> ${item.text}</span> 
+    <button id="btn-${item.id}" class="delete action fa-solid fa-trash-can">X</button> 
     </li>`;
   });
   listBox.innerHTML = htmlCode;
 
+  ////contenteditable="true"
+
   //-----------------Disparo dos eventos dinâmicos -----------------
 
   //Deletar Item da Lista
-
   var buttons = document.getElementsByClassName("delete"); // Pegamos todos os elementos do DOM que possuem a class 'remove' e armazenamos na variável 'buttons'.
+
   for (var i = 0; i < buttons.length; i++) {
-    // Iteramos nossos elementos e adicionamos para cada elemento com a class 'remove' o addEventListener conectado com o evento 'click' e o callback da função.
     buttons[i].addEventListener("click", removeItem);
   }
 
   //Editar Item da Lista
-
   var itemText = document.getElementsByClassName("lineThrough"); // Pegamos todos os elementos do DOM que possuem a class 'itemList' e armazenamos na variável 'buttons'.
 
   for (var i = 0; i < itemText.length; i++) {
-    // Iteramos nossos elementos e adicionamos para cada elemento com a class 'remove' o addEventListener conectado com o evento 'click' e o callback da função.
     itemText[i].addEventListener("focusout", editItem);
+    itemText[i].addEventListener("dblclick", contentEditable);
+  }
+
+  var buttons = document.getElementsByClassName("chk"); // Pegamos todos os elementos do DOM que possuem a class 'remove' e armazenamos na variável 'buttons'.
+
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", removeItem);
   }
 }
+
+var boxChecked = function (){
+  
+}
+
+var contentEditable = function () {
+  const addAttributte = this.setAttribute("contenteditable", true);
+  this.focus();
+};
 
 var editItem = function () {
   var id = this.getAttribute("id"); // variável id criada para receber o atual objeto-DOM referente ao id do botão remover que o usuário clicar. O this representa o objeto-DOM atual.
@@ -129,18 +152,18 @@ var btn = document.getElementById("myBtn");
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on the button, open the modal
-btn.onclick = function() {
+btn.onclick = function () {
   modal.style.display = "block";
-}
+};
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
+span.onclick = function () {
   modal.style.display = "none";
-}
+};
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
+window.onclick = function (event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
-}
+};
