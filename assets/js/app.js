@@ -1,5 +1,4 @@
 /* Captura dos elementos do HTML */
-
 const modal = document.getElementById("myModal");
 const btnModal = document.getElementById("myBtn");
 const spanModal = document.getElementById("itemModal");
@@ -181,6 +180,7 @@ var removeItem = function () {
 };
 
 // Função para gerar novo ID e adicionar item ao array
+
 function addItem(text, value, qtd) {
   const newID = Date.now() * Math.random();
   const itemArray = { text, checked: false, id: newID, value: value, qtd: qtd };
@@ -289,3 +289,4 @@ function sumTotal() {
 
 //disparo de evento no botão para deletar itens comprados
 deleteChecked.addEventListener('click', () => deleteCheckeds());
+
