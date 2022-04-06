@@ -13,16 +13,18 @@
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+
   <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
   <link rel="stylesheet" href="./assets/css/style.css" />
-  <link type="image/png" sizes="16x16" rel="icon" href="./assets/images/icons8-cesta-de-compras-16.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link type="image/png" sizes="16x16" rel="icon" href="./assets/images/icons8-cesta-de-compras-16.png" />
+
 </head>
 
 <body>
   <header>
     <div class="logo">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="200px"
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="120px"
         style="enable-background:new 0 0 512 512" xml:space="preserve">
         <linearGradient id="a" gradientUnits="userSpaceOnUse" x1="29.686" y1="15.16" x2="487.349" y2="469.941">
           <stop offset="0" style="stop-color:#fef050" />
@@ -69,15 +71,16 @@
     <hr>
   </header>
   <main>
-    <div class="input-group mb-3" id="listStorage" hidden>
+
+   <!--  <div class="input-group mb-3" id="listStorage" hidden>
       <label class="input-group-text bg-success" for="inputGroupSelect01">Listas de compras Salvas</label>
       <select class="form-select" id="inputGroupSelect01">
         <option selected id>Escolher outra lista...</option>
-        <!--<option value="1">Nova Lista</option>-->
+       <option value="1">Nova Lista</option>
       </select>
-    </div>
+    </div>-->
 
-    <div class="emptyList" hidden>
+    <!-- <div class="emptyList" hidden>
       <div><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512"
           width="150" xml:space="preserve">
           <linearGradient id="a" gradientUnits="userSpaceOnUse" x1="24.69" y1="10.277" x2="482.353" y2="460.447">
@@ -96,7 +99,7 @@
         </svg>
         <p>Você não possui listas de compras cadastradas, gostaria de iniciar uma nova lista?</p>
       </div>
-    </div>
+    </div> -->
 
     <form id="newItemForm" class="item-list">
       <div class="items">
@@ -116,46 +119,37 @@
     <section class="item-list">
       <ul class="items" id="items">
         <!--
-          <div class="item">
-            <div class="content">
-              <input type="checkbox" name="teste" checked/> <label for="teste">teste</label> 
-            </div>
-            <div class="actions">
-              <button class="edit">Editar</button>
-              <button class="delete">Apagar</button>
-            </div>
-           
-           -->
+        script
+        -->
       </ul>
-
-      <button class="btn-outline-danger animate__animated animate__fadeInUp" hidden>Apagar todos os Itens da
+      <button id="deleteAll" class="btn-outline-danger animate__animated animate__fadeInUp" >Apagar todos os Itens da
         Lista</button>
-      <button class="btn-outline-info animate__animated animate__fadeInUp" hidden>Apagar itens selecionados</button>
+      <button id="deleteChecked" class="btn-outline-info animate__animated animate__fadeInUp" >Apagar itens comprados</button>
     </section>
   </main>
 
-  
-
-  <!-- Botão para acionar modal -->
-
-
-<!-- Trigger/Open The Modal -->
+<!-- Botão para acionar modal -->
 <button type="button" class="btn btn-primary" id="myBtn">Open Modal</button>
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
   <!-- Modal content -->
-  <div class="modal-content bg-dark">
-    
-    <span class="close">&times;</span>
-    <div class="align-self-center ">
-    <p>texto haha</p>
+  <div class="modal-content bg-dark">   
+    <div class="justify-content-center text-center ">
+      Por favor, informe o valor do item: <span id="itemModal"></span> !
+      <input type="number" min="0" name="valueItemInput" id="valueInputModal"
+      class="content bg-light mt-2"
+      placeholder="R$" />
+      <button id="valueBtnModal" class="btn btn-outline-info mt-2">Salvar</button>
   </div>
   </div>
-
 </div>
 
-
+<!-- <footer id="footer" class="fixed-bottom bg-dark text-white-50">
+  <div class="container text-center">
+    <p>-</p>
+  </div>
+</footer> -->
 
   <!-- Bootstrap JavaScript Libraries -->
   <script src="./assets/js/app.js" type="module"></script>

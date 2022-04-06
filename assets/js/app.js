@@ -1,9 +1,19 @@
 /* Define os elementos */
+const modal = document.getElementById("myModal");
+const btnModal = document.getElementById("myBtn");
+const spanModal = document.getElementById("itemModal");
+
+const valueInputModal = document.getElementById("valueInputModal");
+const valueBtnModal = document.getElementById("valueBtnModal");
+
 const inputItem = document.getElementById("newItemInput");
 const formSubmit = document.getElementById("newItemForm");
 const listBox = document.getElementById("items");
+const deleteAll = document.getElementById("deleteAll");
+const deleteChecked = document.getElementById("deleteChecked");
 const nullInput = document.querySelector(".hidden");
 const listLocalStorage = "listShop";
+let valorModal = 0;
 
 let arrItem = []; //Cria o Array em branco
 
@@ -52,7 +62,6 @@ function renderScreen() {
     htmlCode += `
     <li class="content input-group ${checkedValue}" id="${item.id}">
     <input type="checkbox" class="form-check-input chk" ${checkedValue} id="chk-${item.id}"/> 
-  
     <span id="txt-${item.id} "class="lineThrough text itemList"> ${item.text}</span> 
     <button id="btn-${item.id}" class="delete action fa-solid fa-trash-can">X</button> 
     </li>`;
@@ -97,14 +106,28 @@ var boxChecked = function () {
     parent.classList.remove("checked");
     parent.classList.remove("animate__animated"); //remove a função de animações no elemento
     parent.classList.remove("animate__flipInX"); //remove animação específica no elemento
-    parent.classList.add("noChecked");
-  }
 
-  var id = this.getAttribute("id"); // variável id criada para receber o atual objeto-DOM referente ao id do botão remover que o usuário clicar. O this representa o objeto-DOM atual.
+  var id = this.getAttribute("id"); // variável id criada para receber o atual objeto-DOM referente ao id do checked
 
   id = id.replace("chk-", "");
+
   arrItem = getList(); //
 
+  let result = arrItem.filter(function (el) {
+    return el.id == id;
+  });
+  
+  for (let element of result) {
+    let index = arrItem.indexOf(element);
+    arrItem[index].checked = this.checked;}
+
+  localStorage.setItem(listLocalStorage, JSON.stringify(arrItem)); //
+  //
+};
+
+
+
+function adicionarValor(ID) {
   let result = arrItem.filter(function (el) {
     return el.id == id;
   });
@@ -112,7 +135,9 @@ var boxChecked = function () {
   for (let element of result) {
     let index = arrItem.indexOf(element);
     arrItem[index].checked = this.checked;
+    //textModal = arrItem[index].text
   }
+}
 
   localStorage.setItem(listLocalStorage, JSON.stringify(arrItem)); //
   //
@@ -145,15 +170,17 @@ var editItem = function () {
   renderScreen(); // Render Screen
 };
 
+//Remove item from Array/LocalStorage
 var removeItem = function () {
-  var id = this.getAttribute("id"); // variável id criada para receber o atual objeto-DOM referente ao id do botão remover que o usuário clicar. O this representa o objeto-DOM atual.
-  id = id.replace("btn-", "");
+  var id = this.getAttribute("id"); // get id from object
+  id = id.replace("btn-", ""); //adjust id for search in local storage
   arrItem = getList(); //
 
   let result = arrItem.filter(function (el) {
     return el.id == id;
   });
 
+  //loop for remove item by index
   for (let element of result) {
     let index = arrItem.indexOf(element);
     arrItem.splice(index, 1);
@@ -163,44 +190,65 @@ var removeItem = function () {
   renderScreen(); // Render Screen
 };
 
+
+
+//Function to add new item with ID generate
 function addItem(text, value, qtd) {
   const newID = Date.now() * Math.random();
   const itemArray = { text, checked: false, id: newID, value: value, qtd: qtd };
   arrItem.push(itemArray);
 }
 
+//Get LocalStorage items
 const getList = function () {
   var getList_string = localStorage.getItem(listLocalStorage); // Pega o conteúdo/valor da chave 'todos' do 'localStorage' e armazena na variável 'todos_string'
   if (getList_string != null) {
-    // Verifica se o array de elementos não é nulo. Caso true então retornará a conversão de um JSON string para um Javascript data.
+    // If  array not null, then do conversion JSON in array.
     return JSON.parse(getList_string);
   }
 };
 
+//Render items onLoad form
 renderScreen();
 
-// Get the modal
-var modal = document.getElementById("myModal");
-
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+//Listener Events
 
 // When the user clicks on the button, open the modal
-btn.onclick = function () {
+btnModal.addEventListener("click", () => {
   modal.style.display = "block";
-};
+});
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-  modal.style.display = "none";
-};
+valueBtnModal.addEventListener("click", () => {
+  if (valueInputModal.value) {
+    valorModal = parseInt(valueInputModal.value);
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-  if (event.target == modal) {
     modal.style.display = "none";
+  } else {
+    return alert("Para prosseguir é necessário informar o valor do item!");
   }
-};
+});
+
+formSubmit.addEventListener("submit", (e) => {
+  //capture submit
+  e.preventDefault();
+
+  if (!inputItem.value) {
+    nullInput.hidden = false;
+    return;
+  } else {
+    nullInput.hidden = true;
+  }
+
+  addItem(inputItem.value.trim(), 0, 0);
+  localStorage.setItem(listLocalStorage, JSON.stringify(arrItem));
+  inputItem.value = "";
+  inputItem.focus();
+  renderScreen();
+});
+
+function deleteAllItems() {
+  localStorage.clear();
+  arrItem = [];
+  console.log("deleteAllItems ~ arrItem", arrItem)
+}

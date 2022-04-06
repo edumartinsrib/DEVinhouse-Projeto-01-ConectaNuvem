@@ -4,7 +4,7 @@
   --darkest: #111827;
   --grey: #6b7280;
   --pink: #ec4899;
-  --purple: #8b5cf6;
+  --purple: #892CDC;
   --light: #eee;
 }
 
@@ -150,7 +150,6 @@ li {
   cursor: pointer;
 }
 
-
 /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */
@@ -169,101 +168,7 @@ li {
 .modal-content {
   background-color: #fefefe;
   margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
+  padding: 30px;
   border: 1px solid #888;
-  width: 500px; /* Could be more or less, depending on screen size */
+  width: 480px; /* Could be more or less, depending on screen size */
 }
-
-/* The Close Button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-/* 
-.actions {
-  display: flex;
-  margin: 0 -0.5rem;
-}
-
-.item .actions button {
-  cursor: pointer;
-  margin: 0 0.5rem;
-  font-size: 1.125rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  transition: 0.4s;
-}
-
-.item .actions button:hover {
-  opacity: 0.8;
-}
-
-.item .actions button:active {
-  opacity: 0.6;
-}
-
-.item .actions .edit {
-  background-image: linear-gradient(to right, var(--pink), var(--purple));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.item .actions .delete {
-  color: crimson;
-}
-
-input[type="checkbox"]:checked ~ .lineThrough {
-  color: #ccc;
-  text-decoration: line-through;
-}
-
-.add-control {
-  position: relative;
-}
-.add-control .form-control {
-  padding-right: 25px;
-}
-.add-control .refresh {
-  position: absolute;
-  top: 8px;
-  right: 0;
-  font-size: 14px;
-  -webkit-transform: translateX(100%);
-  transform: translateX(100%);
-  margin-right: -10px;
-  cursor: pointer;
-  color: #9da1af;
-  -webkit-transition: color 0.15s linear;
-  transition: color 0.15s linear;
-}
-.add-control .refresh:hover {
-  color: #666;
-}
-.form-control,
-.form-control:focus,
-.form-control:active,
-.form-control:active:focus {
-  border: none;
-  padding: 10px 15px;
-  outline: none;
-}
-.form-control {
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  -webkit-transition: all 0.2s linear;
-  transition: all 0.2s linear;
-}
-.form-control:focus {
-  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-} */
