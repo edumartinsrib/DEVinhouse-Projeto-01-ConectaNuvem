@@ -172,3 +172,21 @@ li {
   border: 1px solid #888;
   width: 480px; /* Could be more or less, depending on screen size */
 }
+
+
+.textFooter {
+  color: var(--light);
+  font-size: 1.40rem;
+  text-align: center;
+  margin-top: 0px;
+  padding-top: 4px;
+  
+}
+
+.textFooter + #valueTotal {
+  color: var(--light);
+  margin-left: 5px;
+  margin-top: 0px;
+  font-size: 22px;
+  text-align: center;
+}
