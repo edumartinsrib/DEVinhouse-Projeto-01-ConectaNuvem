@@ -1,25 +1,26 @@
-//Get Elementes
+//Captura os elementos da tela
 const inputItem = document.getElementById("newItemInput");
 const formSubmit = document.getElementById("newItemForm");
 const listBox = document.getElementById("items");
 const nullInput = document.querySelector(".hidden");
 const listLocalStorage = "listShop";
 
+//Define o Array Inicial
 let arrItem = [];
 
-// search list in localStorange
+//Busca os dados no localStorage 
 const listJSON = JSON.parse(localStorage.getItem(listLocalStorage));
 
 if (listJSON != null) {
-  arrItem = listJSON;
+  arrItem = listJSON; //Se for diferente de nulo, popula o array com os dados do localStorage
 }
 
-//Listener Events
+//Função para capturar o evento submit no formulário - Captura enter/click
 formSubmit.addEventListener("submit", (e) => {
   e.preventDefault();
 
   if (!inputItem.value) {
-    nullInput.hidden = false;
+    nullInput.hidden = false; 
     return;
   } else {
     nullInput.hidden = true;
@@ -55,26 +56,26 @@ function renderScreen() {
   });
   listBox.innerHTML = htmlCode;
 
-  ////contenteditable="true"
+  
 
   //-----------------Disparo dos eventos dinâmicos -----------------
 
   //Deletar Item da Lista
-  var buttons = document.getElementsByClassName("delete"); // Pegamos todos os elementos do DOM que possuem a class 'remove' e armazenamos na variável 'buttons'.
+  var buttons = document.getElementsByClassName("delete"); // 
 
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", removeItem);
   }
 
   //Editar Item da Lista
-  var itemText = document.getElementsByClassName("lineThrough"); // Pegamos todos os elementos do DOM que possuem a class 'itemList' e armazenamos na variável 'buttons'.
+  var itemText = document.getElementsByClassName("lineThrough"); // 
 
   for (var i = 0; i < itemText.length; i++) {
     itemText[i].addEventListener("focusout", editItem);
     itemText[i].addEventListener("dblclick", contentEditable);
   }
 
-  var buttons = document.getElementsByClassName("chk"); // Pegamos todos os elementos do DOM que possuem a class 'remove' e armazenamos na variável 'buttons'.
+  var buttons = document.getElementsByClassName("chk"); //
 
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", boxChecked);
