@@ -25,10 +25,11 @@ if (listJSON != null) {
 }
 
 /* Evento de Submit do Formulário - Captura Enter/Click*/
+
 formSubmit.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  if (!inputItem.value) {
+  if (inputItem.value) {
     nullInput.hidden = false;
     return;
   } else {
@@ -123,25 +124,9 @@ var boxChecked = function () {
 
   localStorage.setItem(listLocalStorage, JSON.stringify(arrItem)); //
   //
-};
+}};
 
 
-
-function adicionarValor(ID) {
-  let result = arrItem.filter(function (el) {
-    return el.id == id;
-  });
-
-  for (let element of result) {
-    let index = arrItem.indexOf(element);
-    arrItem[index].checked = this.checked;
-    //textModal = arrItem[index].text
-  }
-}
-
-  localStorage.setItem(listLocalStorage, JSON.stringify(arrItem)); //
-  //
-};
 
 /* Funções executada para permitir a edição do conteúdo do item após duplo click*/
 var contentEditable = function () {
