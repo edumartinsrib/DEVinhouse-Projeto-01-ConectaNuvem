@@ -268,6 +268,7 @@ function deleteCheckeds() {
   renderScreen(); // Render Screen
 }
 
+//Função para soma do total com base no array atualizado pelo localstorage
 function sumTotal() {
   arrItem = getList();
 
@@ -286,4 +287,5 @@ function sumTotal() {
     : (valueTotal.innerText = "R$ 0,00");
 }
 
+//disparo de evento no botão para deletar itens comprados
 deleteChecked.addEventListener('click', () => deleteCheckeds());
