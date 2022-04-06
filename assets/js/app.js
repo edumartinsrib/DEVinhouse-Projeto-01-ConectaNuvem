@@ -46,17 +46,20 @@ function renderScreen() {
   let checkedValue = ""; //Variável para guardar o valor checked true/false na iteração
 
   if (!items) {
-    listBox.innerHTML = ""; //Se não houver nada salvo, a lista é exibida vazia
+    listBox.innerHTML = ""; //Se não houver nada salvo, não ocorre a renderização de elementos 
     return;
   }
 
   //Laço para iteração e criação dos elementos HTMLs, identificando cada elemento com seu ID e prefixo definido pela natureza do elemento
   items.forEach((item) => {
-    checkedValue = item.checked ? "checked" : ""; //chega se o campo deve estar marcado na renderização com base no valor do array
+    let valueItemId = item.value.toLocaleString('pt-br', {style: 'currency',currency: 'BRL', minimumFractionDigits: 2}) 
+    checkedValue = item.checked ? "checked" : ""; //checa se o campo deve estar marcado na renderização com base no valor do array
+    valueItemId = item.checked ? valueItemId : ""; //chega se o campo não está marcado não traz o valor do item na renderização
     htmlCode += `
     <li class="content input-group ${checkedValue}" id="${item.id}">
     <input type="checkbox" class="form-check-input chk" ${checkedValue} id="chk-${item.id}"/> 
     <span id="txt-${item.id} "class="lineThrough text itemList"> ${item.text}</span> 
+    <span id="value-${item.id} "class="valueItem"> ${valueItemId}</span> 
     <button id="btn-${item.id}" class="delete action">X</button> 
     </li>`;
   });
@@ -110,6 +113,7 @@ var boxChecked = function () {
   for (let element of result) {
     let index = arrItem.indexOf(element);
     arrItem[index].checked = this.checked; //altera o checked do valor do array com base no elemento marcado 
+    !this.checked ? arrItem[index].value = 0 : '';
   }
 
   localStorage.setItem(listLocalStorage, JSON.stringify(arrItem)); //altera o checked do valor do localStorage com base no elemento marcado
@@ -122,7 +126,6 @@ var boxChecked = function () {
   } else {
     parent.classList.remove("checked", "animate__animated", "animate__pulse");
     parent.classList.add("noChecked");
-   
     //realiza a atualização do valor total em tela - é reexecutada a função, pois para os efeitos de animação ocorrerem, a tela não pode ser renderizada novamente
     sumTotal()
     //limpa o iD para o caso de um novo item ser marcado
@@ -189,7 +192,7 @@ function addItem(text, value, qtd) {
 
 //Get LocalStorage items
 const getList = function () {
-  var getList_string = localStorage.getItem(listLocalStorage); // Pega o conteúdo/valor da chave 'todos' do 'localStorage' e armazena na variável 'todos_string'
+  var getList_string = localStorage.getItem(listLocalStorage); //
   if (getList_string != null) {
     return JSON.parse(getList_string);
   }
@@ -279,7 +282,7 @@ function sumTotal(){
   
   const accTotal = result.reduce((acc, value) => acc + value.value, 0)
 
-  accTotal ? valueTotal.textContent = accTotal.toLocaleString('pt-br', {style: 'currency',currency: 'BRL', minimumFractionDigits: 2}) : valueTotal.textContent = '0,00'
+  accTotal ? valueTotal.innerText = accTotal.toLocaleString('pt-br', {style: 'currency',currency: 'BRL', minimumFractionDigits: 2}) : valueTotal.innerText = 'R$ 0,00'
   
 
 }
