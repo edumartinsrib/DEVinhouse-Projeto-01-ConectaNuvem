@@ -13,7 +13,7 @@ const listBox = document.getElementById("items");
 const deleteAll = document.getElementById("deleteAll");
 const deleteChecked = document.getElementById("deleteChecked");
 const nullInput = document.querySelector(".hidden");
-const valueTotal = document.getElementById('valueTotal');
+const valueTotal = document.getElementById("valueTotal");
 
 //Define Variáveis globais
 const listLocalStorage = "listShop";
@@ -28,11 +28,6 @@ if (listJSON != null) {
   arrItem = listJSON; //se houver, o array do JS é atualizado com os valores do LocalStorage
 }
 
-//Evento click no botão 'Apagar itens comprados'
-deleteChecked.addEventListener("click", () => {
-  removeItemChecked();
-});
-
 //Evento click no botão 'apagar todos os itens da lista'
 deleteAll.addEventListener("click", () => {
   deleteAllItems();
@@ -41,18 +36,22 @@ deleteAll.addEventListener("click", () => {
 
 //Função principal e exclusiva para renderização dos elementos na tela
 function renderScreen() {
-  const items = JSON.parse(localStorage.getItem(listLocalStorage)); //Recupera os itens salvos no localStorage 
+  const items = JSON.parse(localStorage.getItem(listLocalStorage)); //Recupera os itens salvos no localStorage
   let htmlCode = ""; //variável que conterá o código HTML após iteração
   let checkedValue = ""; //Variável para guardar o valor checked true/false na iteração
 
   if (!items) {
-    listBox.innerHTML = ""; //Se não houver nada salvo, não ocorre a renderização de elementos 
+    listBox.innerHTML = ""; //Se não houver nada salvo, não ocorre a renderização de elementos
     return;
   }
 
   //Laço para iteração e criação dos elementos HTMLs, identificando cada elemento com seu ID e prefixo definido pela natureza do elemento
   items.forEach((item) => {
-    let valueItemId = item.value.toLocaleString('pt-br', {style: 'currency',currency: 'BRL', minimumFractionDigits: 2}) 
+    let valueItemId = item.value.toLocaleString("pt-br", {
+      style: "currency",
+      currency: "BRL",
+      minimumFractionDigits: 2,
+    });
     checkedValue = item.checked ? "checked" : ""; //checa se o campo deve estar marcado na renderização com base no valor do array
     valueItemId = item.checked ? valueItemId : ""; //chega se o campo não está marcado não traz o valor do item na renderização
     htmlCode += `
@@ -67,7 +66,7 @@ function renderScreen() {
 
   //-----------------Disparo dos eventos dinâmicos -----------------
 
-  //Cria as funções em todos os 'buttons' para deletar items da lista 
+  //Cria as funções em todos os 'buttons' para deletar items da lista
   var buttons = document.getElementsByClassName("delete"); // take all DOM elements buttons that have an 'remove'
 
   for (var i = 0; i < buttons.length; i++) {
@@ -83,26 +82,25 @@ function renderScreen() {
   }
 
   //Cria as funções para todos os checkboxs renderizados
-  var check = document.getElementsByClassName("chk"); // 
+  var check = document.getElementsByClassName("chk"); //
 
   for (var i = 0; i < buttons.length; i++) {
     check[i].addEventListener("click", boxChecked); //função para alterar o status checked do elemento no array/localstorage, assim como abrir modal para informar valores
   }
-  
+
   //Por fim, é renderizado no footer o valor atualizado dos itens 'checkeds'
 
-  sumTotal()
-  
+  sumTotal();
 }
 
-//Variavel funcional com as seguintes funcionalidades: Alteração do array/localstorage com atualização do 'checked', 
+//Variavel funcional com as seguintes funcionalidades: Alteração do array/localstorage com atualização do 'checked',
 //inclusão de animações de movimento/alteração de cor do elemento, atualização do valor total da compra.
 var boxChecked = function () {
   var parent = this.parentNode; //Obtém a referência do componente pai para inclusão das animações/alterações de background color
 
   var id = this.getAttribute("id"); // variável id criada para receber o id do componente 'checked'
 
-  id = id.replace("chk-", ""); //Remove o prefixo determinado para obter o mesmo ID do array/localStorage 
+  id = id.replace("chk-", ""); //Remove o prefixo determinado para obter o mesmo ID do array/localStorage
 
   arrItem = getList(); //Atualiza o array com base no localStorage
 
@@ -112,8 +110,8 @@ var boxChecked = function () {
 
   for (let element of result) {
     let index = arrItem.indexOf(element);
-    arrItem[index].checked = this.checked; //altera o checked do valor do array com base no elemento marcado 
-    !this.checked ? arrItem[index].value = 0 : '';
+    arrItem[index].checked = this.checked; //altera o checked do valor do array com base no elemento marcado
+    !this.checked ? (arrItem[index].value = 0) : "";
   }
 
   localStorage.setItem(listLocalStorage, JSON.stringify(arrItem)); //altera o checked do valor do localStorage com base no elemento marcado
@@ -127,7 +125,7 @@ var boxChecked = function () {
     parent.classList.remove("checked", "animate__animated", "animate__pulse");
     parent.classList.add("noChecked");
     //realiza a atualização do valor total em tela - é reexecutada a função, pois para os efeitos de animação ocorrerem, a tela não pode ser renderizada novamente
-    sumTotal()
+    sumTotal();
     //limpa o iD para o caso de um novo item ser marcado
     idItem = "";
   }
@@ -135,62 +133,61 @@ var boxChecked = function () {
   //
 };
 
-
-//Edit content text on doubleclick
+//Função chamada para permitir a edição do item com o duploclick no elemento
 var contentEditable = function () {
   const addAttributte = this.setAttribute("contenteditable", true);
   this.focus();
 };
 
-//Update content text in focus out - Array/LocalStorage
+//Atualiza o conteúdo no Array/LocalStorage ao sair do campo
 var editItem = function () {
-  var id = this.getAttribute("id"); // variável id criada para receber o atual objeto-DOM referente ao id do botão remover que o usuário clicar. O this representa o objeto-DOM atual.
-  var text = this.textContent;
+  var id = this.getAttribute("id"); //Recupera o ID do elemento
+  var text = this.textContent; //Recupera o texto do elemento
 
   id = id.replace("txt-", "");
-  arrItem = getList(); //
+  arrItem = getList(); //Atualiza o array
 
   let result = arrItem.filter(function (el) {
-    return el.id == id;
+    return el.id == id; //Filtra o array conforme o ID do elemento
   });
 
   for (let element of result) {
     let index = arrItem.indexOf(element);
-    arrItem[index].text = text;
+    arrItem[index].text = text; //atualiza o array com informações do item editado
   }
 
-  localStorage.setItem(listLocalStorage, JSON.stringify(arrItem)); //
-  renderScreen(); // Render Screen
+  localStorage.setItem(listLocalStorage, JSON.stringify(arrItem)); //Atualiza o localstorage a partir do array editado
+  renderScreen(); // Renderiza a tela com as novas informações
 };
 
-//Remove item from Array/LocalStorage
+//Função para remover item do Array/Localstorage
 var removeItem = function () {
-  var id = this.getAttribute("id"); // get id from object
-  id = id.replace("btn-", ""); //adjust id for search in local storage
-  arrItem = getList(); //
+  var id = this.getAttribute("id"); // Recupera o ID do elemento
+  id = id.replace("btn-", ""); //Ajusta o ID para busca no array/localstorage
+  arrItem = getList(); //Atualiza o array com os dados do localStorage
 
   let result = arrItem.filter(function (el) {
-    return el.id == id;
+    return el.id == id; //Filtra array conforme ID do elemento
   });
 
-  //loop for remove item by index
+  //Realiza iteração para remover os itens pelo ID
   for (let element of result) {
     let index = arrItem.indexOf(element);
     arrItem.splice(index, 1);
   }
 
-  localStorage.setItem(listLocalStorage, JSON.stringify(arrItem)); //
-  renderScreen(); // Render Screen
+  localStorage.setItem(listLocalStorage, JSON.stringify(arrItem)); //Atualiza a lista no localStorage após remoção do item
+  renderScreen(); // Renderiza a tela
 };
 
-//Function to add new item with ID generate
+// Função para gerar novo ID e adicionar item ao array
 function addItem(text, value, qtd) {
   const newID = Date.now() * Math.random();
   const itemArray = { text, checked: false, id: newID, value: value, qtd: qtd };
   arrItem.push(itemArray);
 }
 
-//Get LocalStorage items
+//Variável funcionar para obter dados do localStorage
 const getList = function () {
   var getList_string = localStorage.getItem(listLocalStorage); //
   if (getList_string != null) {
@@ -198,23 +195,22 @@ const getList = function () {
   }
 };
 
-//Render items onLoad form
+//Renderizar itens na tela no load do formulário
 renderScreen();
 
-//Listener Events
-
-// When the user clicks on <span> (x), close the modal
+//Captura o click no modal e realiza a atualização do valor do item no array/LocalStorage
 valueBtnModal.addEventListener("click", () => {
   if (valueInputModal.value) {
     valorModal = parseFloat(valueInputModal.value);
     addValueArr(idItem, valorModal);
-    valueInputModal.value = '';
+    valueInputModal.value = "";
     modal.style.display = "none";
   } else {
     return alert("Para prosseguir é necessário informar o valor do item!");
   }
 });
 
+// Variavel funcional para adicionar valor no  array/localstorage
 var addValueArr = (idItem, valor) => {
   let result = arrItem.filter(function (el) {
     return el.id == idItem;
@@ -229,10 +225,11 @@ var addValueArr = (idItem, valor) => {
   renderScreen(); // Render Screen
 };
 
+//Captura evento submit no formulário para adição de novos itens
 formSubmit.addEventListener("submit", (e) => {
-  //capture submit
   e.preventDefault();
 
+  //Verificar se há valor no input, se não houver exibe elemento que aponta erro
   if (!inputItem.value) {
     nullInput.hidden = false;
     return;
@@ -240,49 +237,53 @@ formSubmit.addEventListener("submit", (e) => {
     nullInput.hidden = true;
   }
 
-  addItem(inputItem.value.trim(), 0, 0);
-  localStorage.setItem(listLocalStorage, JSON.stringify(arrItem));
-  inputItem.value = "";
-  inputItem.focus();
-  renderScreen();
+  addItem(inputItem.value.trim(), 0, 0); //função para adição de novos itens
+  localStorage.setItem(listLocalStorage, JSON.stringify(arrItem)); //atualiza localstorage com informações do array
+  inputItem.value = ""; //limpa o campo após salvar dados
+  inputItem.focus(); //atualiza o foco no campo input para inserção de novos itens
+  renderScreen(); //renderiza a tela com itens adicionados
 });
 
+// Função para deletar todos os itens do Array/Objeto atualizando a tela
 function deleteAllItems() {
   localStorage.clear();
   arrItem = [];
-  console.log("deleteAllItems ~ arrItem", arrItem);
+  renderScreen();
 }
 
+//função para deletar apenas itens checkados do array/localstorage ao fim renderizando a tela;
 function deleteCheckeds() {
-  var id = this.getAttribute("id");
-
-  id = id.replace("btn-", "");
   arrItem = getList(); //
 
   let result = arrItem.filter(function (el) {
-    return el.id == id;
+    return el.checked == true;
   });
 
   for (let element of result) {
     let index = arrItem.indexOf(element);
     arrItem.splice(index, 1);
   }
-  
+
   localStorage.setItem(listLocalStorage, JSON.stringify(arrItem)); //
   renderScreen(); // Render Screen
 }
 
-function sumTotal(){ 
-  
+function sumTotal() {
   arrItem = getList();
 
   let result = arrItem.filter(function (el) {
     return el.checked == true;
   });
-  
-  const accTotal = result.reduce((acc, value) => acc + value.value, 0)
 
-  accTotal ? valueTotal.innerText = accTotal.toLocaleString('pt-br', {style: 'currency',currency: 'BRL', minimumFractionDigits: 2}) : valueTotal.innerText = 'R$ 0,00'
-  
+  const accTotal = result.reduce((acc, value) => acc + value.value, 0);
 
+  accTotal
+    ? (valueTotal.innerText = accTotal.toLocaleString("pt-br", {
+        style: "currency",
+        currency: "BRL",
+        minimumFractionDigits: 2,
+      }))
+    : (valueTotal.innerText = "R$ 0,00");
 }
+
+deleteChecked.addEventListener('click', () => deleteCheckeds());
