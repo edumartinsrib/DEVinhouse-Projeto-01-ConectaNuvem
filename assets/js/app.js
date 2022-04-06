@@ -41,6 +41,7 @@ function renderScreen() {
 
   if (!items) {
     listBox.innerHTML = ""; //Se não houver nada salvo, não ocorre a renderização de elementos
+    valueTotal.innerText = "R$ 0,00";
     return;
   }
 
