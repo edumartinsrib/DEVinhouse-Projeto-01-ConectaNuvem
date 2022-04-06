@@ -21,7 +21,7 @@ var idItem = "";
 let valorModal = 0;
 let arrItem = [];
 
-// Procura se há alguma lista salva no localStorage
+// Checa se há alguma lista salva no localStorage
 const listJSON = JSON.parse(localStorage.getItem(listLocalStorage));
 
 if (listJSON != null) {
