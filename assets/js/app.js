@@ -13,6 +13,7 @@ const deleteAll = document.getElementById("deleteAll");
 const deleteChecked = document.getElementById("deleteChecked");
 const nullInput = document.querySelector(".hidden");
 const listLocalStorage = "listShop";
+var idItem = '';
 let valorModal = 0;
 
 let arrItem = [];
@@ -24,13 +25,13 @@ if (listJSON != null) {
   arrItem = listJSON;
 }
 
-deleteChecked.addEventListener('click', () =>{
-  
+deleteChecked.addEventListener("click", () => {
   removeItemChecked();
-})
+});
 
 deleteAll.addEventListener("click", () => {
-  
+  deleteAllItems();
+  renderScreen();
 });
 
 //function to render a screen with updates
@@ -38,7 +39,7 @@ function renderScreen() {
   const items = JSON.parse(localStorage.getItem(listLocalStorage));
 
   if (!items) {
-    listBox.innerHTML = '';
+    listBox.innerHTML = "";
     return;
   }
 
@@ -94,25 +95,25 @@ var boxChecked = function () {
   let result = arrItem.filter(function (el) {
     return el.id == id;
   });
-  
 
   for (let element of result) {
     let index = arrItem.indexOf(element);
-    arrItem[index].checked = this.checked;}
+    arrItem[index].checked = this.checked;
+  }
 
   if (this.checked) {
     parent.classList.add("checked", "animate__animated", "animate__pulse");
+    idItem = id
     modal.style.display = "block";
   } else {
     parent.classList.remove("checked", "animate__animated", "animate__pulse");
     parent.classList.add("noChecked");
+    idItem = '';
   }
 
   localStorage.setItem(listLocalStorage, JSON.stringify(arrItem)); //
   //
 };
-
-
 
 function adicionarValor(ID) {
   let result = arrItem.filter(function (el) {
@@ -173,8 +174,6 @@ var removeItem = function () {
   renderScreen(); // Render Screen
 };
 
-
-
 //Function to add new item with ID generate
 function addItem(text, value, qtd) {
   const newID = Date.now() * Math.random();
@@ -205,12 +204,33 @@ btnModal.addEventListener("click", () => {
 valueBtnModal.addEventListener("click", () => {
   if (valueInputModal.value) {
     valorModal = parseInt(valueInputModal.value);
-
+    
+    addValueArr(idItem, valorModal);
     modal.style.display = "none";
   } else {
     return alert("Para prosseguir é necessário informar o valor do item!");
   }
 });
+
+var addValueArr = (idItem, valor) => {
+  
+  let result = arrItem.filter(function (el) {
+    return el.id == idItem;
+    
+  });
+
+  console.log("addValueArr ~ result", result)
+
+  for (let element of result) {
+    let index = arrItem.indexOf(element);
+    arrItem[index].value = valor;
+  }
+  localStorage.setItem(listLocalStorage, JSON.stringify(arrItem)); //
+  renderScreen(); // Render Screen
+  
+} 
+
+
 
 formSubmit.addEventListener("submit", (e) => {
   //capture submit
@@ -233,5 +253,24 @@ formSubmit.addEventListener("submit", (e) => {
 function deleteAllItems() {
   localStorage.clear();
   arrItem = [];
-  console.log("deleteAllItems ~ arrItem", arrItem)
+  console.log("deleteAllItems ~ arrItem", arrItem);
 }
+
+function deleteCheckeds() {
+  var id = this.getAttribute("id"); 
+  
+  id = id.replace("btn-", "");
+  arrItem = getList(); //
+
+  let result = arrItem.filter(function (el) {
+    return el.id == id;
+  });
+
+  for (let element of result) {
+    let index = arrItem.indexOf(element);
+    arrItem[index].text = text;
+  }
+
+  localStorage.setItem(listLocalStorage, JSON.stringify(arrItem)); //
+  renderScreen(); // Render Screen
+};
