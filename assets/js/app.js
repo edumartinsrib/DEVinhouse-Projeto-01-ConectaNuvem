@@ -1,20 +1,20 @@
-//Get Elementes
+/* Define os elementos */
 const inputItem = document.getElementById("newItemInput");
 const formSubmit = document.getElementById("newItemForm");
 const listBox = document.getElementById("items");
 const nullInput = document.querySelector(".hidden");
 const listLocalStorage = "listShop";
 
-let arrItem = [];
+let arrItem = []; //Cria o Array em branco
 
-// search list in localStorange
+// Procura lista salva no local Storage
 const listJSON = JSON.parse(localStorage.getItem(listLocalStorage));
 
 if (listJSON != null) {
-  arrItem = listJSON;
+  arrItem = listJSON; //se houver alguma lista, preenche o valor do Array com lista do LocalStorage
 }
 
-//Listener Events
+/* Evento de Submit do Formulário - Captura Enter/Click*/
 formSubmit.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -25,25 +25,29 @@ formSubmit.addEventListener("submit", (e) => {
     nullInput.hidden = true;
   }
 
-  addItem(inputItem.value.trim(), 0, 0);
+  addItem(inputItem.value.trim(), 0, 0); //Função para gerar novo id e criar novo item no Array
 
-  localStorage.setItem(listLocalStorage, JSON.stringify(arrItem));
+  localStorage.setItem(listLocalStorage, JSON.stringify(arrItem)); //Atualizada a lista do LocalStorage com base nos dados do Array
 
-  inputItem.value = "";
-  inputItem.focus();
-  renderScreen();
+  inputItem.value = ""; //Apaga valor do campo Input
+  inputItem.focus(); //Foca no campo input para nova inserção de dados
+  renderScreen(); //Renderiza os elementos com base no localStorage (atualizado)
 });
 
+/* Função principal para renderizar elementos (LI's) na tela */
 function renderScreen() {
   const items = JSON.parse(localStorage.getItem(listLocalStorage));
 
   if (!items) {
+    //valida localStorage vazio - Se vazio então dá return e tela se mantém vazia
     return;
   }
+
   let htmlCode = "";
   let checkedValue = "";
 
   items.forEach((item) => {
+    //Itera os dados obtidos do localStorage criando os elementos na tela com os atributos necessários
     checkedValue = item.checked ? "checked" : "";
     htmlCode += `
     <li class="content input-group ${checkedValue}" id="${item.id}">
@@ -53,45 +57,46 @@ function renderScreen() {
     <button id="btn-${item.id}" class="delete action fa-solid fa-trash-can">X</button> 
     </li>`;
   });
-  listBox.innerHTML = htmlCode;
+  listBox.innerHTML = htmlCode; //Adiciona o código HTML iterado acima no Elemento UL da tela
 
-  ////contenteditable="true"
+  /* Funções para disparo dos eventos dinamicos */
 
-  //-----------------Disparo dos eventos dinâmicos -----------------
-
-  //Deletar Item da Lista
-  var buttons = document.getElementsByClassName("delete"); // Pegamos todos os elementos do DOM que possuem a class 'remove' e armazenamos na variável 'buttons'.
+  //Deletar Itens da Lista
+  var buttons = document.getElementsByClassName("delete"); // São capturados todos os elementos que contenham a classe 'delete', ou seja, os buttons criados para deletar itens.
 
   for (var i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener("click", removeItem);
+    buttons[i].addEventListener("click", removeItem); //Disparo para remoção do item referente ao checkbox clicado
   }
 
-  //Editar Item da Lista
-  var itemText = document.getElementsByClassName("lineThrough"); // Pegamos todos os elementos do DOM que possuem a class 'itemList' e armazenamos na variável 'buttons'.
+  //Editar Itens da Lista
+  var itemText = document.getElementsByClassName("lineThrough"); // São capturados todos os elementos que contenham a classe 'LineThrough', ou seja, os spans com o conteúdo do nome do item
 
   for (var i = 0; i < itemText.length; i++) {
-    itemText[i].addEventListener("focusout", editItem);
-    itemText[i].addEventListener("dblclick", contentEditable);
+    itemText[i].addEventListener("focusout", editItem); //disparo de evento ao perder foco com a atualização do valor do campo.
+    itemText[i].addEventListener("dblclick", contentEditable); //disparo de evento  duploclick para liberar a edição do elemento span criado para o nome do item.
   }
 
+  //Funções relativas ao Checkbox
   var buttons = document.getElementsByClassName("chk"); // Pegamos todos os elementos do DOM que possuem a class 'remove' e armazenamos na variável 'buttons'.
 
   for (var i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener("click", boxChecked);
+    buttons[i].addEventListener("click", boxChecked); //Disparo ao marcar checkbox - Atualizando valor do Array e LocalStorage
   }
 }
 
+/* Funções executada ao marcar/desmarcar Checkbox*/
 var boxChecked = function () {
-  var parent = this.parentNode
+  var parent = this.parentNode;
 
   if (this.checked) {
+    //Ao marcar o checkbox, são adicionadas classes com funções específicas
     parent.classList.add("checked");
-    parent.classList.add("animate__animated");
-    parent.classList.add("animate__flipInX");
+    parent.classList.add("animate__animated"); //Add Funcionalidade de Animações ao elemento via biblioteca Animate.css
+    parent.classList.add("animate__flipInX"); //Executa animação de flip ao marcar o checkbox
   } else {
     parent.classList.remove("checked");
-    parent.classList.remove("animate__animated");
-    parent.classList.remove("animate__flipInX");
+    parent.classList.remove("animate__animated"); //remove a função de animações no elemento
+    parent.classList.remove("animate__flipInX"); //remove animação específica no elemento
     parent.classList.add("noChecked");
   }
 
@@ -113,17 +118,19 @@ var boxChecked = function () {
   //
 };
 
+/* Funções executada para permitir a edição do conteúdo do item após duplo click*/
 var contentEditable = function () {
-  const addAttributte = this.setAttribute("contenteditable", true);
-  this.focus();
+  const addAttributte = this.setAttribute("contenteditable", true); //adiciona atributo ao elemento
+  this.focus(); //retorna o foco ao elemento à ser editado - Ao perder foco a função edititem é executada
 };
 
+/* Funções para editar o item alterado no array/local storage - tem inicio após perder o foco no campo de texto*/
 var editItem = function () {
-  var id = this.getAttribute("id"); // variável id criada para receber o atual objeto-DOM referente ao id do botão remover que o usuário clicar. O this representa o objeto-DOM atual.
-  var text = this.textContent;
+  var id = this.getAttribute("id"); // variável id criada para receber o referente ao id elemento do objeto.
+  var text = this.textContent; //variavel criada para obter o texto após edição
 
-  id = id.replace("txt-", "");
-  arrItem = getList(); //
+  id = id.replace("txt-", ""); //a ID do item foi replicada nos elementos com um prefixo - aqui é feito o replace para a id do elemento corresponder a ID do item no array/localstorage
+  arrItem = getList(); //Recupera o array do JS
 
   let result = arrItem.filter(function (el) {
     return el.id == id;
