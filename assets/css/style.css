@@ -2,8 +2,12 @@
   --dark: #303841;
   --grey: #6b7280;
   --purple: #5900ff;
-  --blue: #00ADB5;
+  --blue: #2D46B9;
   --light: #eee;
+  --red: #B20600;
+  --redDark: #630606;
+  --green: #6BCB77;
+  --greenDark: #019267;
 }
 
 * {
@@ -49,11 +53,20 @@ button {
   outline: none;
   background: none;
 }
+.btnAction{
+  border-radius: 10px 20px;
+}
+
+#footer{
+  background-color: var(--blue);
+}
+
+
 
 .content {
   flex: 1 1 0%;
   background-color: var(--light);
-  padding: 0, 6rem;
+  padding: 0.3rem;
   border-radius: 1rem;
   margin-right: 1rem;
   color: var(--dark);
@@ -112,7 +125,7 @@ main {
 
 .checked {
   background-color: var(--blue);
-  color: var(--darkest);
+  color: var(--light);
 }
 
 ul{
@@ -124,8 +137,7 @@ li {
   flex-direction:row;
   flex-wrap: wrap;
   background-color: var(--dark);
-  
-  color: var(--darkest);
+  color: var(--light);
   left: 0;
   padding: 0.3rem;
   border-radius: 1rem;
@@ -142,7 +154,7 @@ li {
   color: var(--purple);
   font-size: 1.25rem;
   font-weight: 700;
-  background-image: linear-gradient(to right, var(--purple), var(--blue));
+  background-image: linear-gradient(to right, var(--red), var(--redDark));
   background-clip:text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -186,4 +198,10 @@ li {
   margin-top: 0px;
   font-size: 22px;
   text-align: center;
+}
+
+@media (max-width:600px) { 
+  header{
+    display: flex;
+  }
 }

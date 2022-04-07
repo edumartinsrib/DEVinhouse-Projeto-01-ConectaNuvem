@@ -59,10 +59,10 @@ function renderScreen() {
     <input type="checkbox" class="form-check-input chk" ${checkedValue} id="chk-${item.id}"/> 
     <span id="txt-${item.id} "class="lineThrough text itemList"> ${item.text}</span> 
     <span id="value-${item.id} "class="valueItem"> ${valueItemId}</span> 
-    <button id="btn-${item.id}" class="delete action">X</button> 
+    <button id="btn-${item.id}" class="delete action"><i class="fa-solid fa-trash-can"></i></button> 
     </li>`;
   });
-  listBox.innerHTML = htmlCode; //renderiza os componentes na tela
+  listBox.innerHTML = htmlCode; //renderiza os componentes na tela <i class="fa-solid fa-circle-trash"></i>
 
   //-----------------Disparo dos eventos dinâmicos -----------------
 
@@ -289,5 +289,4 @@ function sumTotal() {
 }
 
 //disparo de evento no botão para deletar itens comprados
-deleteChecked.addEventListener('click', () => deleteCheckeds());
-
+deleteChecked.addEventListener("click", () => deleteCheckeds());
