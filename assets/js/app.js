@@ -2,7 +2,7 @@
 
 const btnMain = document.getElementById("btnMain");
 const pMain = document.getElementById("msgMain");
-const pSub = document.getElementById("msgSub")
+
 
 const modal = document.getElementById("myModal");
 const btnModal = document.getElementById("myBtn");
@@ -23,6 +23,7 @@ const divEmptyList = document.getElementById("emptyList")
 const divFooter = document.getElementById("footer");
 
 //Define Variáveis globais
+const dayWeek = new Date().getDay();
 const listLocalStorage = "listShop";
 var idItem = "";
 let valorModal = 0;
@@ -36,6 +37,18 @@ console.log("listJSON", listJSON) */
   arrItem = listJSON; //se houver, o array do JS é atualizado com os valores do LocalStorage
 } else {
 } */
+
+let dayWeekObj = {
+    0: 'Domingou no sofá😴? só que não! <br> Que tal iniciar a semana com uma bela lista de compras?',
+    1: 'Uma ótima Segunda-Feira pra começar aquele projetinho fitness 😅! <br> Pra não esquecer nada inicie uma lista de compras abaixo!',
+    2: 'A terça tá com cara de segunda😁? <br> Cola com nós pra não esquecer nenhum item da lista de compras!',
+    3: 'Quarta-feira chefia ✌! <br> Dia propício para fazer aquelaaas compras! Clica no botão abaixo e vamos que vamos! 🏃‍♂️🏃‍♀️',
+    4: 'Quinta-feira com &quot;q&quot; de quase sexta🎉! <br> Pra não esquecer nada no mercado, clica abaixo e faz a listinha!',
+    5: '😎 Sextouuuu meu consagrado(a)! <br> Bora fazer a listinha do churras!',
+    6: 'Sábado também é dia 🙌!  Inicie uma nova lista para não esquecer nada!'
+}
+
+pMain.innerHTML = dayWeekObj[dayWeek]
 
 //Evento click no botão 'apagar todos os itens da lista'
 deleteAll.addEventListener("click", () => {
@@ -317,3 +330,5 @@ function applyHidden(value){
 }
 
 btnMain.addEventListener("click", () => applyHidden(false))
+
+
