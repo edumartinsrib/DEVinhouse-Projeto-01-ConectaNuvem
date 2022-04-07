@@ -1,4 +1,9 @@
 /* Captura dos elementos do HTML */
+
+const btnMain = document.getElementById("btnMain");
+const pMain = document.getElementById("msgMain");
+const pSub = document.getElementById("msgSub")
+
 const modal = document.getElementById("myModal");
 const btnModal = document.getElementById("myBtn");
 const spanModal = document.getElementById("itemModal");
@@ -14,18 +19,23 @@ const deleteChecked = document.getElementById("deleteChecked");
 const nullInput = document.querySelector(".hidden");
 const valueTotal = document.getElementById("valueTotal");
 
+const divEmptyList = document.getElementById("emptyList")
+const divFooter = document.getElementById("footer");
+
 //Define Variáveis globais
 const listLocalStorage = "listShop";
 var idItem = "";
 let valorModal = 0;
 let arrItem = [];
 
-// Checa se há alguma lista salva no localStorage
+/* // Checa se há alguma lista salva no localStorage
 const listJSON = JSON.parse(localStorage.getItem(listLocalStorage));
+console.log("listJSON", listJSON) */
 
-if (listJSON != null) {
+/* if (listJSON) {
   arrItem = listJSON; //se houver, o array do JS é atualizado com os valores do LocalStorage
-}
+} else {
+} */
 
 //Evento click no botão 'apagar todos os itens da lista'
 deleteAll.addEventListener("click", () => {
@@ -39,10 +49,17 @@ function renderScreen() {
   let htmlCode = ""; //variável que conterá o código HTML após iteração
   let checkedValue = ""; //Variável para guardar o valor checked true/false na iteração
 
-  if (!items) {
+  if (!items || items.length === 0) {
     listBox.innerHTML = ""; //Se não houver nada salvo, não ocorre a renderização de elementos
     valueTotal.innerText = "R$ 0,00";
+    deleteAll.hidden = true; //se não há valores no array esconde os botões de delete
+    deleteChecked.hidden = true;
+    applyHidden(true)
     return;
+  } else{
+    deleteAll.hidden = false; //se  há valores no array exibe os botões de delete
+    deleteChecked.hidden = false;
+    applyHidden(false)
   }
 
   //Laço para iteração e criação dos elementos HTMLs, identificando cada elemento com seu ID e prefixo definido pela natureza do elemento
@@ -250,6 +267,8 @@ function deleteAllItems() {
   localStorage.clear();
   arrItem = [];
   renderScreen();
+  deleteAll.hidden = true;
+  deleteChecked.hidden = true;
 }
 
 //função para deletar apenas itens checkados do array/localstorage ao fim renderizando a tela;
@@ -290,3 +309,11 @@ function sumTotal() {
 
 //disparo de evento no botão para deletar itens comprados
 deleteChecked.addEventListener("click", () => deleteCheckeds());
+
+function applyHidden(value){
+  formSubmit.hidden = value;
+  divFooter.hidden = value;
+  divEmptyList.hidden = !value;
+}
+
+btnMain.addEventListener("click", () => applyHidden(false))
