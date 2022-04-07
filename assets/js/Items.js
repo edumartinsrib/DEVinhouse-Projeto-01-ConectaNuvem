@@ -9,9 +9,8 @@ import { getList } from "./dataArray.js";
 //Variavel funcional com as seguintes funcionalidades: Alteração do array/localstorage com atualização do 'checked',
 //inclusão de animações de movimento/alteração de cor do elemento, atualização do valor total da compra.
 export function boxChecked(elemento) {
-console.log("boxChecked ~ elemento", elemento)
     
-   // var parent = elemento.parentNode; //Obtém a referência do componente pai para inclusão das animações/alterações de background color
+   var parent = this.parentNode; //Obtém a referência do componente pai para inclusão das animações/alterações de background color
   
     var id = this.getAttribute("id"); // variável id criada para receber o id do componente 'checked'
   
