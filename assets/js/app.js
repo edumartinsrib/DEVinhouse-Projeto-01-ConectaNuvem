@@ -3,10 +3,10 @@
 const btnMain = document.getElementById("btnMain");
 const pMain = document.getElementById("msgMain");
 
-
 const modal = document.getElementById("myModal");
 const btnModal = document.getElementById("myBtn");
 const spanModal = document.getElementById("itemModal");
+const errModal = document.getElementById("errModal");
 
 const valueInputModal = document.getElementById("valueInputModal");
 const valueBtnModal = document.getElementById("valueBtnModal");
@@ -19,7 +19,7 @@ const deleteChecked = document.getElementById("deleteChecked");
 const nullInput = document.querySelector(".hidden");
 const valueTotal = document.getElementById("valueTotal");
 
-const divEmptyList = document.getElementById("emptyList")
+const divEmptyList = document.getElementById("emptyList");
 const divFooter = document.getElementById("footer");
 
 //Define Variáveis globais
@@ -29,26 +29,17 @@ var idItem = "";
 let valorModal = 0;
 let arrItem = [];
 
-/* // Checa se há alguma lista salva no localStorage
-const listJSON = JSON.parse(localStorage.getItem(listLocalStorage));
-console.log("listJSON", listJSON) */
-
-/* if (listJSON) {
-  arrItem = listJSON; //se houver, o array do JS é atualizado com os valores do LocalStorage
-} else {
-} */
-
 let dayWeekObj = {
-    0: 'Domingou no sofá😴? só que não! <br> Que tal iniciar a semana com uma bela lista de compras?',
-    1: 'Uma ótima Segunda-Feira pra começar aquele projetinho fitness 😅! <br> Pra não esquecer nada inicie uma lista de compras abaixo!',
-    2: 'A terça tá com cara de segunda😁? <br> Cola com nós pra não esquecer nenhum item da lista de compras!',
-    3: 'Quarta-feira chefia ✌! <br> Dia propício para fazer aquelaaas compras! Clica no botão abaixo e vamos que vamos! 🏃‍♂️🏃‍♀️',
-    4: 'Quinta-feira com &quot;q&quot; de quase sexta🎉! <br> Pra não esquecer nada no mercado, clica abaixo e faz a listinha!',
-    5: '😎 Sextouuuu meu consagrado(a)! <br> Bora fazer a listinha do churras!',
-    6: 'Sábado também é dia 🙌!  Inicie uma nova lista para não esquecer nada!'
-}
+  0: "Domingou no sofá😴? só que não! <br> Que tal iniciar a semana com uma bela lista de compras?",
+  1: "Uma ótima Segunda-Feira pra começar aquele projetinho fitness 😅! <br> Pra não esquecer nada inicie uma lista de compras abaixo!",
+  2: "A terça tá com cara de segunda😁? <br> Cola com nós pra não esquecer nenhum item da lista de compras!",
+  3: "Quarta-feira chefia ✌! <br> Dia propício para fazer aquelaaas compras! Clica no botão abaixo e vamos que vamos! 🏃‍♂️🏃‍♀️",
+  4: "Quinta-feira com &quot;q&quot; de quase sexta🎉! <br> Pra não esquecer nada no mercado, clica abaixo e faz a listinha!",
+  5: "😎 Sextouuuu! <br> Bora fazer a listinha do churras!",
+  6: "Sábado também é dia 🙌!  Inicie uma nova lista para não esquecer nada!",
+};
 
-pMain.innerHTML = dayWeekObj[dayWeek]
+pMain.innerHTML = dayWeekObj[dayWeek];
 
 //Evento click no botão 'apagar todos os itens da lista'
 deleteAll.addEventListener("click", () => {
@@ -67,12 +58,12 @@ function renderScreen() {
     valueTotal.innerText = "R$ 0,00";
     deleteAll.hidden = true; //se não há valores no array esconde os botões de delete
     deleteChecked.hidden = true;
-    applyHidden(true)
+    applyHidden(true);
     return;
-  } else{
+  } else {
     deleteAll.hidden = false; //se  há valores no array exibe os botões de delete
     deleteChecked.hidden = false;
-    applyHidden(false)
+    applyHidden(false);
   }
 
   //Laço para iteração e criação dos elementos HTMLs, identificando cada elemento com seu ID e prefixo definido pela natureza do elemento
@@ -145,15 +136,18 @@ var boxChecked = function () {
   }
 
   localStorage.setItem(listLocalStorage, JSON.stringify(arrItem)); //altera o checked do valor do localStorage com base no elemento marcado
+  errModal.hidden = true;
 
   //verifica itens marcados e adiciona/remove classes para animação e cor no elemento, a depender do estado.
   if (this.checked) {
     parent.classList.add("checked", "animate__animated", "animate__pulse");
     idItem = id;
     modal.style.display = "block";
+    valueInputModal.focus();
   } else {
     parent.classList.remove("checked", "animate__animated", "animate__pulse");
     parent.classList.add("noChecked");
+
     //realiza a atualização do valor total em tela - é reexecutada a função, pois para os efeitos de animação ocorrerem, a tela não pode ser renderizada novamente
     sumTotal();
     //limpa o iD para o caso de um novo item ser marcado
@@ -236,8 +230,9 @@ valueBtnModal.addEventListener("click", () => {
     addValueArr(idItem, valorModal);
     valueInputModal.value = "";
     modal.style.display = "none";
+    errModal.hidden = true;
   } else {
-    return alert("Para prosseguir é necessário informar o valor do item!");
+    errModal.hidden = false;
   }
 });
 
@@ -323,12 +318,10 @@ function sumTotal() {
 //disparo de evento no botão para deletar itens comprados
 deleteChecked.addEventListener("click", () => deleteCheckeds());
 
-function applyHidden(value){
+btnMain.addEventListener("click", () => applyHidden(false));
+
+function applyHidden(value) {
   formSubmit.hidden = value;
   divFooter.hidden = value;
   divEmptyList.hidden = !value;
 }
-
-btnMain.addEventListener("click", () => applyHidden(false))
-
-

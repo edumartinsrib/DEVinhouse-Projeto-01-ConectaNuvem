@@ -2,11 +2,11 @@
   --dark: #303841;
   --grey: #6b7280;
   --purple: #5900ff;
-  --blue: #2D46B9;
+  --blue: #2d46b9;
   --light: #eee;
-  --red: #B20600;
+  --red: #b20600;
   --redDark: #630606;
-  --green: #6BCB77;
+  --green: #6bcb77;
   --greenDark: #019267;
 }
 
@@ -30,9 +30,7 @@ header {
   width: 100%;
   margin: 0 auto;
   text-align: center;
-  
 }
-
 
 #emptyList {
   text-align: center;
@@ -45,7 +43,6 @@ header h1 {
   font-size: 2.5rem;
   font-weight: 300;
   color: var(--light);
-  
 }
 
 input,
@@ -54,15 +51,16 @@ button {
   outline: none;
   background: none;
 }
-.btnAction{
+
+.btnAction {
   border-radius: 10px 20px;
 }
 
-#footer{
+#footer {
   background-color: var(--blue);
 }
 
-header .logo{
+header .logo {
   width: 150px;
   margin: 0 auto;
   text-align: center;
@@ -97,7 +95,7 @@ header .logo{
   font-size: 1.25rem;
   font-weight: 700;
   background-image: linear-gradient(to right, var(--purple), var(--blue));
-  background-clip:text;
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   cursor: pointer;
@@ -121,11 +119,10 @@ main {
 
 .item-list {
   padding: 0.6rem;
-  
 }
 
 #text {
-  justify-content:left
+  justify-content: left;
 }
 
 .checked {
@@ -133,13 +130,13 @@ main {
   color: var(--light);
 }
 
-ul{
+ul {
   padding-left: 0;
 }
 
 li {
   display: flex;
-  flex-direction:row;
+  flex-direction: row;
   flex-wrap: wrap;
   background-color: var(--dark);
   color: var(--light);
@@ -149,55 +146,64 @@ li {
   margin-bottom: 1rem;
 }
 
-.text{
+.text {
   flex-grow: 1;
   position: relative;
   left: 5px;
 }
 
-.action{
+.action {
   color: var(--purple);
   font-size: 1.25rem;
   font-weight: 700;
   background-image: linear-gradient(to right, var(--red), var(--redDark));
-  background-clip:text;
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   cursor: pointer;
 }
 
-
 .modal {
-  display: none; 
-  position: fixed; 
+  display: none;
+  position: fixed;
   z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; 
-  height: 100%; 
+  width: 100%;
+  height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4); 
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 /* Conteúdo do Modal*/
 .modal-content {
-  background-color:var(--light);
-  margin: 15% auto; 
+  background-color: var(--light);
+  margin: 15% auto;
   padding: 30px;
   border: 1px solid #888;
-  width: 480px; 
+  width: 480px;
+}
+
+.emptyValue {
+  color: red;
+}
+
+#valueBtnModal {
+  position: relative;
+  top: -10px;
+  left: -15px;
 }
 
 /*Texto do Rodapé*/
 .textFooter {
   color: var(--light);
-  font-size: 1.40rem;
+  font-size: 1.4rem;
   text-align: center;
   margin-top: 0px;
   padding-top: 4px;
 }
 
-.textFooter + #valueTotal {
+.textFooter+#valueTotal {
   color: var(--light);
   margin-left: 5px;
   margin-top: 0px;
@@ -205,17 +211,17 @@ li {
   text-align: center;
 }
 
-@media (max-width:600px) { 
-  header{
+@media (max-width: 600px) {
+  header {
     display: flex;
-    background-color: var(--purple);
+    background-color: #22577e;
   }
 
-  .logo{
+  .logo {
     width: 120px;
   }
 
-  h2{
+  h2 {
     font-size: 0.5rem;
   }
 }
