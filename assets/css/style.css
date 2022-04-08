@@ -51,14 +51,14 @@ button {
   outline: none;
   background: none;
 }
-.chk{
-
- border-radius: 8px!important;
+.chk {
+  border-radius: 5px !important;
   transform: scale(1.3);
+  margin-left: 2px;
+  margin-right: 3px;
 }
-:checked{
-  background-color: var(--green)!important;
-  
+:checked {
+  background-color: var(--green) !important;
 }
 
 .btnAction {
@@ -204,7 +204,7 @@ li {
   padding-top: 4px;
 }
 
-.textFooter+#valueTotal {
+.textFooter + #valueTotal {
   color: var(--light);
   margin-left: 5px;
   margin-top: 0px;
@@ -222,7 +222,7 @@ li {
   #newItemInput::placeholder {
     font-size: 0.7rem;
   }
-  
+
   .logo {
     width: 120px;
   }

@@ -1,5 +1,6 @@
-/* Captura dos elementos do HTML */
+import { songEffect } from "./audio.js";
 
+/* Captura dos elementos do HTML */
 const btnMain = document.getElementById("btnMain");
 const pMain = document.getElementById("msgMain");
 
@@ -49,14 +50,13 @@ deleteAll.addEventListener("click", () => {
 //Função principal e exclusiva para renderização dos elementos na tela
 function renderScreen() {
   const items = JSON.parse(localStorage.getItem(listLocalStorage)); //Recupera os itens salvos no localStorage
-  let htmlCode = ""; //variável que conterá o código HTML após iteração
-  let checkedValue = ""; //Variável para guardar o valor checked true/false na iteração
+  let htmlCode = "";
+  let checkedValue = "";
 
   if (!items || items.length === 0) {
     listBox.innerHTML = ""; //Se não houver nada salvo, não ocorre a renderização de elementos
     valueTotal.innerText = "R$ 0,00";
-    //deleteAll.hidden = true; //se não há valores no array esconde os botões de delete
-    //deleteChecked.hidden = true;
+
     applyHidden(true, "render");
     return;
   } else {
@@ -82,9 +82,8 @@ function renderScreen() {
     <button id="btn-${item.id}" class="delete action"><i class="fa-solid fa-trash-can"></i></button> 
     </li>`;
   });
-  listBox.innerHTML = htmlCode; //renderiza os componentes na tela <i class="fa-solid fa-circle-trash"></i>
+  listBox.innerHTML = htmlCode;
 
-  //-----------------Disparo dos eventos dinâmicos -----------------
   //Cria as funções em todos os 'buttons' para deletar items da lista
   var buttons = document.getElementsByClassName("delete"); // take all DOM elements buttons that have an 'remove'
   for (var i = 0; i < buttons.length; i++) {
@@ -106,15 +105,13 @@ function renderScreen() {
   sumTotal();
 }
 
-//Variavel funcional com as seguintes funcionalidades: Alteração do array/localstorage com atualização do 'checked',
-//inclusão de animações de movimento/alteração de cor do elemento, atualização do valor total da compra.
 var boxChecked = async function () {
   var parent = this.parentNode; //Obtém a referência do componente pai para inclusão das animações/alterações de background color
   var id = this.getAttribute("id"); // variável id criada para receber o id do componente 'checked'
   id = id.replace("chk-", ""); //Remove o prefixo determinado para obter o mesmo ID do array/localStorage
   idItem = id;
 
-  this.checked ? await hiddenModal(false) : addValueArr(id,0,false);
+  this.checked ? await hiddenModal(false) : addValueArr(id, 0, false);
 
   //verifica itens marcados e adiciona/remove classes para animação e cor no elemento, a depender do estado.
   if (this.checked) {
@@ -124,8 +121,6 @@ var boxChecked = async function () {
   } else {
     parent.classList.remove("checked", "animate__animated", "animate__pulse");
     parent.classList.add("noChecked");
-    //realiza a atualização do valor total em tela - é reexecutada a função, pois para os efeitos de animação ocorrerem, a tela não pode ser renderizada novamente
-    //limpa o iD para o caso de um novo item ser marcado
     idItem = "";
   }
 };
@@ -153,7 +148,7 @@ var editItem = function () {
     arrItem[index].text = text; //atualiza o array com informações do item editado
   }
 
-  updateLocalStorage()
+  updateLocalStorage();
 };
 
 //Função para remover item do Array/Localstorage
@@ -171,8 +166,8 @@ var removeItem = function () {
     let index = arrItem.indexOf(element);
     arrItem.splice(index, 1);
   }
-
-  updateLocalStorage()
+  songEffect("trash");
+  updateLocalStorage();
 };
 
 // Função para gerar novo ID e adicionar item ao array
@@ -194,8 +189,7 @@ const getList = function () {
 //Renderizar itens na tela no load do formulário
 renderScreen();
 
-
-function updateLocalStorage(){
+function updateLocalStorage() {
   localStorage.setItem(listLocalStorage, JSON.stringify(arrItem)); //
   renderScreen(); // Render Screen
 }
@@ -212,7 +206,7 @@ var addValueArr = (idItem, valor, checkedValue) => {
     arrItem[index].checked = checkedValue;
     !checkedValue ? (arrItem[index].value = 0) : "";
   }
-  updateLocalStorage()
+  updateLocalStorage();
 };
 
 //Captura evento submit no formulário para adição de novos itens
@@ -226,23 +220,26 @@ formSubmit.addEventListener("submit", (e) => {
   } else {
     nullInput.hidden = true;
   }
-
   addItem(inputItem.value.trim(), 0, 0); //função para adição de novos itens
-  updateLocalStorage()
+  updateLocalStorage();
   inputItem.value = ""; //limpa o campo após salvar dados
   inputItem.focus(); //atualiza o foco no campo input para inserção de novos itens
 });
 
 // Função para deletar todos os itens do Array/Objeto atualizando a tela
 function deleteAllItems() {
-  const validateDelete = confirm('Você realmente deseja deletar toda a lista de compras?')
+ 
+  const validateDelete = confirm(
+    "Você realmente deseja deletar toda a lista de compras?"
+  );
 
-  if (validateDelete){
-  localStorage.clear();
-  arrItem = [];
-  renderScreen();
-  deleteAll.hidden = true;
-  deleteChecked.hidden = true;
+  if (validateDelete) {
+    songEffect("trash");
+    localStorage.clear();
+    arrItem = [];
+    renderScreen();
+    deleteAll.hidden = true;
+    deleteChecked.hidden = true;
   }
 }
 
@@ -258,8 +255,9 @@ function deleteCheckeds() {
     let index = arrItem.indexOf(element);
     arrItem.splice(index, 1);
   }
-
-  updateLocalStorage()
+  songEffect("trash");
+  updateLocalStorage();
+ 
 }
 
 //Função para soma do total com base no array atualizado pelo localstorage
@@ -306,6 +304,8 @@ async function hiddenModal(value) {
       if (valueInputModal.value) {
         valorModal = parseFloat(valueInputModal.value);
         addValueArr(idItem, valorModal, true);
+        console.l;
+        songEffect("cash");
         valueInputModal.value = "";
         modal.style.display = "none";
         errModal.hidden = true;
@@ -328,3 +328,4 @@ async function hiddenModal(value) {
     });
   });
 }
+
