@@ -51,6 +51,14 @@ button {
   outline: none;
   background: none;
 }
+.chk{
+  border-radius: 8px!important;
+  transform: scale(1.3);
+}
+.chk:checked{
+  background-color: var(--green);
+  
+}
 
 .btnAction {
   border-radius: 10px 20px;
@@ -91,15 +99,11 @@ header .logo {
 }
 
 #newItemSubmit {
-  color: var(--purple);
-  font-size: 1.25rem;
-  font-weight: 700;
   background-image: linear-gradient(to right, var(--purple), var(--blue));
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   cursor: pointer;
-  transition: 0.4s;
 }
 
 #newItemSubmit:hover {
@@ -107,7 +111,7 @@ header .logo {
 }
 
 #newItemSubmit:active {
-  opacity: 0.6;
+  opacity: 0.4;
 }
 
 main {
@@ -153,9 +157,6 @@ li {
 }
 
 .action {
-  color: var(--purple);
-  font-size: 1.25rem;
-  font-weight: 700;
   background-image: linear-gradient(to right, var(--red), var(--redDark));
   background-clip: text;
   -webkit-background-clip: text;
@@ -175,7 +176,6 @@ li {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-/* Conteúdo do Modal*/
 .modal-content {
   background-color: var(--light);
   margin: 15% auto;
@@ -211,12 +211,17 @@ li {
   text-align: center;
 }
 
+/*Responsividade */
 @media (max-width: 600px) {
   header {
     display: flex;
     background-color: #22577e;
   }
 
+  #newItemInput::placeholder {
+    font-size: 0.9rem;
+  }
+  
   .logo {
     width: 120px;
   }
