@@ -304,7 +304,6 @@ async function hiddenModal(value) {
       if (valueInputModal.value) {
         valorModal = parseFloat(valueInputModal.value);
         addValueArr(idItem, valorModal, true);
-        console.l;
         songEffect("cash");
         valueInputModal.value = "";
         modal.style.display = "none";
