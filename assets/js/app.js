@@ -28,7 +28,6 @@ const listLocalStorage = "listShop";
 var idItem = "";
 let valorModal = 0;
 let arrItem = [];
-
 let dayWeekObj = {
   0: "Domingou no sofá😴? só que não! <br> Que tal iniciar a semana com uma bela lista de compras?",
   1: "Uma ótima Segunda-Feira pra começar aquele projetinho fitness 😅! <br> Pra não esquecer nada inicie uma lista de compras abaixo!",
@@ -56,14 +55,14 @@ function renderScreen() {
   if (!items || items.length === 0) {
     listBox.innerHTML = ""; //Se não houver nada salvo, não ocorre a renderização de elementos
     valueTotal.innerText = "R$ 0,00";
-    deleteAll.hidden = true; //se não há valores no array esconde os botões de delete
-    deleteChecked.hidden = true;
-    applyHidden(true);
+    //deleteAll.hidden = true; //se não há valores no array esconde os botões de delete
+    //deleteChecked.hidden = true;
+    applyHidden(true, "render");
     return;
   } else {
-    deleteAll.hidden = false; //se  há valores no array exibe os botões de delete
-    deleteChecked.hidden = false;
-    applyHidden(false);
+    //deleteAll.hidden = false; //se  há valores no array exibe os botões de delete
+    //deleteChecked.hidden = false;
+    applyHidden(false, "render");
   }
 
   //Laço para iteração e criação dos elementos HTMLs, identificando cada elemento com seu ID e prefixo definido pela natureza do elemento
@@ -86,37 +85,30 @@ function renderScreen() {
   listBox.innerHTML = htmlCode; //renderiza os componentes na tela <i class="fa-solid fa-circle-trash"></i>
 
   //-----------------Disparo dos eventos dinâmicos -----------------
-
   //Cria as funções em todos os 'buttons' para deletar items da lista
   var buttons = document.getElementsByClassName("delete"); // take all DOM elements buttons that have an 'remove'
-
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", removeItem);
   }
 
   //Cria as funções em todos os elementos 'span' com a descrição do item, permitindo a edição após duploclick e fazendo a edição com o focusout
   var itemText = document.getElementsByClassName("lineThrough"); //  take all DOM elements span that have an 'Linethrough'
-
   for (var i = 0; i < itemText.length; i++) {
     itemText[i].addEventListener("focusout", editItem); //função focusout para alterar array/localstorage com base na descrição atualizada do elemento
     itemText[i].addEventListener("dblclick", contentEditable); //função para liberar a edição do elemento após duploclick
   }
-
   //Cria as funções para todos os checkboxs renderizados
   var check = document.getElementsByClassName("chk"); //
-
   for (var i = 0; i < buttons.length; i++) {
     check[i].addEventListener("click", boxChecked); //função para alterar o status checked do elemento no array/localstorage, assim como abrir modal para informar valores
   }
-
   //Por fim, é renderizado no footer o valor atualizado dos itens 'checkeds'
-
   sumTotal();
 }
 
 //Variavel funcional com as seguintes funcionalidades: Alteração do array/localstorage com atualização do 'checked',
 //inclusão de animações de movimento/alteração de cor do elemento, atualização do valor total da compra.
-var boxChecked = function () {
+var boxChecked = async function () {
   var parent = this.parentNode; //Obtém a referência do componente pai para inclusão das animações/alterações de background color
 
   var id = this.getAttribute("id"); // variável id criada para receber o id do componente 'checked'
@@ -136,11 +128,17 @@ var boxChecked = function () {
   }
 
   localStorage.setItem(listLocalStorage, JSON.stringify(arrItem)); //altera o checked do valor do localStorage com base no elemento marcado
-  errModal.hidden = true;
+
 
   //verifica itens marcados e adiciona/remove classes para animação e cor no elemento, a depender do estado.
   if (this.checked) {
+    console.log('teste1')
+
+    return new Promise(resolve => { hiddenModal(false)})
+ 
+    console.log('teste2')
     parent.classList.add("checked", "animate__animated", "animate__pulse");
+    spanModal.innerText = "";
     idItem = id;
     modal.style.display = "block";
     valueInputModal.focus();
@@ -224,17 +222,6 @@ const getList = function () {
 renderScreen();
 
 //Captura o click no modal e realiza a atualização do valor do item no array/LocalStorage
-valueBtnModal.addEventListener("click", () => {
-  if (valueInputModal.value) {
-    valorModal = parseFloat(valueInputModal.value);
-    addValueArr(idItem, valorModal);
-    valueInputModal.value = "";
-    modal.style.display = "none";
-    errModal.hidden = true;
-  } else {
-    errModal.hidden = false;
-  }
-});
 
 // Variavel funcional para adicionar valor no  array/localstorage
 var addValueArr = (idItem, valor) => {
@@ -320,8 +307,30 @@ deleteChecked.addEventListener("click", () => deleteCheckeds());
 
 btnMain.addEventListener("click", () => applyHidden(false));
 
-function applyHidden(value) {
+function applyHidden(value, render) {
   formSubmit.hidden = value;
   divFooter.hidden = value;
   divEmptyList.hidden = !value;
+  //ternário para exibir/remover os botões apenas na função reenderscreen quando houver itens no array/localstorage
+  //assim, quando não há itens cadastrados na tela, apenas os botões deleteall/deleteChecked não são exibidos
+  render ? ((deleteAll.hidden = value), (deleteChecked.hidden = value)) : "";
 }
+
+const hiddenModal = async (value) => {
+  errModal.hidden = false;
+  new Promise((resolve,reject) => {
+    valueBtnModal.addEventListener("click", () => {
+      if (valueInputModal.value) {
+        valorModal = parseFloat(valueInputModal.value);
+        addValueArr(idItem, valorModal);
+        valueInputModal.value = "";
+        modal.style.display = "none";
+        errModal.hidden = true;
+        resolve(valueInputModal.value)
+      } else {
+        reject('Cancelado pelo usuário')
+        errModal.hidden = false;
+      }
+    });
+  });
+};
