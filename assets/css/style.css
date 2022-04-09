@@ -33,6 +33,13 @@ header {
   text-align: center;
 }
 
+.conecta{
+  color: #6f5fb5;
+}
+.nuvem{
+  color: #74c5da;
+}
+
 #emptyList {
   text-align: center;
   max-width: 800px;
@@ -289,7 +296,8 @@ li {
 @media (max-width: 600px) {
   header {
     display: flex;
-    background-color: #00092c;
+    background-color: #000416
+;
     border-bottom: 1px solid var(--light);
   }
 

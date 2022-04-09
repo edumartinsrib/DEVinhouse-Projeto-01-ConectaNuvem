@@ -7,18 +7,18 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
+  <!-- Font Google -->
   <link href="https://fonts.googleapis.com/css?family=Nunito:400,700" rel="stylesheet">
-
+  <!-- Reset CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" />
-
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
   <!-- Animate CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-
-
+  <!-- Favicon CSS -->
   <link type="image/png" sizes="16x16" rel="icon" href="./assets/images/reshot-icon-basket-EG8UNRBDHM.svg" />
+  <!-- Stylesheet CSS -->
   <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 
@@ -170,7 +170,7 @@
           <button type="submit" id="newItemSubmit" class="fa-solid fa-cart-plus input-group-addon "></button>
 
         </div>
-        <p class="err text-danger text-center hidden" hidden><i class="fa fa-warning"></i>👎 Oops! Você deve informar o
+        <p class="err text-danger text-center hidden animate__animated animate__shakeX" hidden><i class="fa fa-warning"></i>👎 Oops! Você deve informar o
           nome do item!</p>
       </div>
       </div>
@@ -190,23 +190,22 @@
     </section>
   </main>
 
-  <!-- Botão para acionar modal -->
-
-
   <!-- Modal -->
   <div id="myModal" class="modal">
     <!-- Modal content -->
+    <form id="modal-form">
     <div class="modal-content">
-      <div class=" text-center ">
+      <div class=" text-center input-group">
         Qual o valor pago? 
         <input type="number" min="0" name="valueItemInput" id="valueInputModal" class="bg-light mt-2"
           placeholder="R$&#128181;" />
           <div class="d-grid gap-2">
-        <button id="valueBtnModal" class="btn btn-success mt-4"><strong>Salvar</strong></button>
+        <button id="valueBtnModal" type="submit" class="btn btn-success mt-4"><strong>Salvar</strong></button>
        </div>
       </div>
-      <p class="text-center text-danger" id="errModal">👎Oops! Para prosseguir você deve informar o valor!</p>
+      <p class="text-center text-danger animate__animated animate__shakeX" id="errModal">👎Oops! Para prosseguir você deve informar o valor!</p>
     </div>
+  </form>
   </div>
 
   <footer id="footer" class="fixed-bottom text-white-50" hidden>
@@ -216,7 +215,11 @@
     </div>
   </footer>
 
-
+  <footer id="footerCredits" class="fixed-bottom text-white-50" >
+    <div class="d-flex container justify-content-center text-center">
+    <h5>Made by Eduardo Martins - <span class="colorEffect">DEVinhouse</span> <br>Projeto 01 - Turma <span class="conecta">Conecta</span><span class="nuvem">Nuvem</span></h5>
+    </div>
+  </footer>
 
   <!-- Bootstrap JavaScript Libraries -->
   <script src="./assets/js/app.js" type="module"></script>

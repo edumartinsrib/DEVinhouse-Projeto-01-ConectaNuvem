@@ -5,7 +5,6 @@ const btnMain = document.getElementById("btnMain");
 const pMain = document.getElementById("msgMain");
 
 const modal = document.getElementById("myModal");
-const btnModal = document.getElementById("myBtn");
 
 const errModal = document.getElementById("errModal");
 
@@ -19,9 +18,12 @@ const deleteAll = document.getElementById("deleteAll");
 const deleteChecked = document.getElementById("deleteChecked");
 const nullInput = document.querySelector(".hidden");
 const valueTotal = document.getElementById("valueTotal");
+const formModal = document.getElementById('modal-form')
+
 
 const divEmptyList = document.getElementById("emptyList");
 const divFooter = document.getElementById("footer");
+const divFooterCredits = document.getElementById('footerCredits')
 
 //Define Variáveis globais
 const dayWeek = new Date().getDay();
@@ -36,7 +38,7 @@ let dayWeekObj = {
   3: "<strong>Quarta-feira</strong> chefia ✌! <br> Dia propício para fazer aquelaaas compras! Clica no botão abaixo e vamos que vamos! 🏃‍♂️🏃‍♀️",
   4: "<strong>Quinta-feira</strong> com &quot;q&quot; de quase sexta🎉! <br> Pra não esquecer nada no mercado, clica abaixo e faz a listinha!",
   5: "😎 <strong> Sextouuuu!</strong> <br> Bora fazer a listinha do churras!",
-  6: "Sábado também é dia 🙌!  Inicie uma nova lista para não esquecer nada!",
+  6: "<strong>Sábado</strong> também é dia 🙌!  Inicie uma nova lista para não esquecer nada!",
 };
 
 pMain.innerHTML = dayWeekObj[dayWeek];
@@ -288,6 +290,7 @@ function applyHidden(value, render) {
   formSubmit.hidden = value;
   divFooter.hidden = value;
   divEmptyList.hidden = !value;
+  divFooterCredits.hidden =!value;
   //ternário para exibir/remover os botões apenas na função reenderscreen quando houver itens no array/localstorage
   //assim, quando não há itens cadastrados na tela, apenas os botões deleteall/deleteChecked não são exibidos
   render ? ((deleteAll.hidden = value), (deleteChecked.hidden = value)) : "";
@@ -299,9 +302,9 @@ async function hiddenModal(value) {
     errModal.hidden = !value;
     valueInputModal.focus();
     modal.style.display = "block";
-   
 
-    valueBtnModal.addEventListener("click", () => {
+    formModal.addEventListener("submit", (e) => {
+      e.preventDefault();
       if (valueInputModal.value) {
         valorModal = parseFloat(valueInputModal.value);
         addValueArr(idItem, valorModal, true);
