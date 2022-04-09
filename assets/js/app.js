@@ -13,7 +13,6 @@ const formModalCongrats = document.getElementById("modalformCongrats");
 const modalCongrats = document.getElementById("modalCongrats");
 const btnModalCongrats = document.getElementById("btnModalCongrats");
 
-
 const inputItem = document.getElementById("newItemInput");
 const formSubmit = document.getElementById("newItemForm");
 const listBox = document.getElementById("items");
@@ -133,7 +132,6 @@ var boxChecked = async function () {
     parent.classList.remove("checked", "animate__animated", "animate__pulse");
     parent.classList.add("noChecked");
     idItem = "";
-    
   }
 };
 
@@ -299,7 +297,7 @@ function applyHidden(value, render) {
   render ? ((deleteAll.hidden = value), (deleteChecked.hidden = value)) : "";
 }
 
-function listComplete(){
+function listComplete() {
   arrItem = getList();
   let result = arrItem.every((e) => e.checked === true);
   return result;
@@ -318,11 +316,10 @@ async function hiddenModal(value) {
       if (valueInputModal.value) {
         valorModal = parseFloat(valueInputModal.value);
         addValueArr(idItem, valorModal, true);
-        songEffect("cash");
         valueInputModal.value = "";
         modal.style.display = "none";
         errModal.hidden = true;
-        listComplete() === true ? congratsLoad() : '';
+        listComplete() === true ? congratsLoad() : songEffect("cash");
         stop = true;
       } else {
         errModal.hidden = false;
@@ -342,16 +339,14 @@ async function hiddenModal(value) {
   });
 }
 
-function congratsLoad(){
+function congratsLoad() {
   modalCongrats.style.display = "block";
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  songEffect("finish");
 }
 
-btnModalCongrats.addEventListener('click', (e) => {
+btnModalCongrats.addEventListener("click", (e) => {
   e.preventDefault();
   deleteAllItems();
   modalCongrats.style.display = "none";
-}
-)
-
-
+});
