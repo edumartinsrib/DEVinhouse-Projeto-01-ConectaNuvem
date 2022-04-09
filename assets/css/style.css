@@ -61,6 +61,10 @@ button {
   background-color: var(--green) !important;
 }
 
+input[type=checkbox]:checked + span.lineThrough{
+  text-decoration: line-through;
+}
+
 .btnAction {
   border-radius: 10px 20px;
 }
