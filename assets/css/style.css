@@ -33,10 +33,10 @@ header {
   text-align: center;
 }
 
-.conecta{
+.conecta {
   color: #6f5fb5;
 }
-.nuvem{
+.nuvem {
   color: #74c5da;
 }
 
@@ -74,6 +74,9 @@ input[type="checkbox"]:checked + input.lineThrough {
   text-decoration: line-through;
 }
 
+.text {
+  border-color: #fff !important;
+}
 .btn-grad {
   background-image: linear-gradient(
     to right,
@@ -81,12 +84,6 @@ input[type="checkbox"]:checked + input.lineThrough {
     #0f3443 51%,
     #34e89e 100%
   );
-}
-
-.text{
-  border-color: #fff!important;
-}
-.btn-grad {
   margin: 10px;
   padding: 15px 45px;
   text-align: center;
@@ -205,7 +202,7 @@ main {
   color: var(--light);
 }
 
-.checked input.text{
+.checked input.text {
   color: var(--light);
 }
 
@@ -231,8 +228,7 @@ li {
   left: 5px;
 }
 
-.editable:focus-within{
- 
+.editable:focus-within {
   box-shadow: 2px 2px 50px 2px var(--blue);
   color: var(--red);
   border-radius: 400px !important;
@@ -267,6 +263,10 @@ li {
   background-color: rgba(0, 0, 0, 0.6);
 }
 
+#deleteChecked {
+  margin-bottom: 40px;
+}
+
 .modal-content {
   font-size: 1.125rem;
   background-color: var(--dark);
@@ -288,6 +288,7 @@ li {
 
 /*Texto do Rodapé*/
 .textFooter {
+  overflow: hidden;
   color: var(--light);
   font-size: 1.4rem;
   text-align: center;
@@ -304,16 +305,86 @@ li {
 }
 
 /*Responsividade */
-@media (max-width: 600px) {
+@media (max-width: 576px) {
   header {
     display: flex;
-    background-color: #000416
-;
+    background-color: #000416;
     border-bottom: 1px solid var(--light);
+  }
+
+  .content {
+    font-size: 0.8rem;
+  }
+
+  .textFooter {
+    overflow: hidden;
+    color: var(--light);
+    font-size: 1.4rem;
+    text-align: center;
+    margin-top: 0px;
+    padding-top: 4px;
   }
 
   #newItemInput::placeholder {
     font-size: 0.7rem;
+  }
+
+  .logo {
+    width: 120px;
+  }
+  #deleteChecked {
+    margin-bottom: 30px;
+  }
+
+  h2 {
+    font-size: 0.5rem;
+  }
+  #msgMain {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 280px) {
+  header {
+    font-size: 0.1rem;
+    display: flex;
+    background-color: #000416;
+    border-bottom: 1px solid var(--light);
+  }
+
+  header h1 {
+    font-size: 1.3rem;
+    align-items: center;
+  }
+  svg {
+    position: relative;
+    bottom: 15px;
+    width: 80px;
+  }
+  .logo {
+    height: 50px;
+  }
+  .content {
+    font-size: 0.65rem;
+  }
+
+  .textFooter {
+    color: var(--light);
+    font-size: 0.8rem;
+    text-align: center;
+    margin-top: 0px;
+    padding-top: 4px;
+  }
+
+  #newItemInput::placeholder {
+    font-size: 0.7rem;
+  }
+
+  #emptyList {
+    text-align: center;
+    margin-top: 30px;
+    width: 100%;
+    text-align: center;
   }
 
   .logo {
@@ -324,6 +395,48 @@ li {
     font-size: 0.5rem;
   }
   #msgMain {
-    font-size: 1.5rem;
+    font-size: 0.6rem;
+  }
+
+  #deleteChecked {
+    font-size: 0.75rem;
+    margin-bottom: 30px;
+  }
+
+  #deleteAll {
+    font-size: 0.75rem;
+  }
+
+  .btn-grad {
+    font-size: 15px;
+    width: 15.5rem;
+    margin: 5px;
+    padding: 05px 20px;
+  }
+
+  .textFooter {
+    color: var(--light);
+    font-size: 0.7rem;
+    
+  }
+  .textFooter + #valueTotal {
+    color: var(--light);
+    margin-left: 5px;
+    margin-top: 0px;
+    font-size: 0.7rem;
+    text-align: center;
+  }
+  .modal-content {
+    font-size: 0.8rem;
+    width: 200px;
+  }
+  .text-center {
+    justify-content: center;
+  }
+  #valueInputModal {
+    width: 120px;
+    text-align: center;
+    position: relative;
+    left: 6px;
   }
 }
