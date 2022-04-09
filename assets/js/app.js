@@ -312,7 +312,6 @@ async function hiddenModal(value) {
         stop = true;
       } else {
         errModal.hidden = false;
-        stop = true;
       }
 
       loop();
