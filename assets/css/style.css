@@ -222,6 +222,10 @@ li {
   margin-bottom: 1rem;
 }
 
+.card{
+  background-color: var(--dark)!important;
+}
+
 .text {
   flex-grow: 1;
   position: relative;

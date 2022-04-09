@@ -4,10 +4,15 @@ import { songEffect } from "./audio.js";
 const btnMain = document.getElementById("btnMain");
 const pMain = document.getElementById("msgMain");
 
-const formModal = document.getElementById('modal-form')
+const formModal = document.getElementById("modal-form");
 const modal = document.getElementById("myModal");
 const errModal = document.getElementById("errModal");
 const valueInputModal = document.getElementById("valueInputModal");
+
+const formModalCongrats = document.getElementById("modalformCongrats");
+const modalCongrats = document.getElementById("modalCongrats");
+const btnModalCongrats = document.getElementById("btnModalCongrats");
+
 
 const inputItem = document.getElementById("newItemInput");
 const formSubmit = document.getElementById("newItemForm");
@@ -17,10 +22,9 @@ const deleteChecked = document.getElementById("deleteChecked");
 const nullInput = document.querySelector(".hidden");
 const valueTotal = document.getElementById("valueTotal");
 
-
 const divEmptyList = document.getElementById("emptyList");
 const divFooter = document.getElementById("footer");
-const divFooterCredits = document.getElementById('footerCredits')
+const divFooterCredits = document.getElementById("footerCredits");
 
 //Define Variáveis globais
 const dayWeek = new Date().getDay();
@@ -53,7 +57,7 @@ function renderScreen() {
   let checkedValue = "";
 
   if (!items || items.length === 0) {
-    listBox.innerHTML = ""; 
+    listBox.innerHTML = "";
     valueTotal.innerText = "R$ 0,00";
 
     applyHidden(true, "render");
@@ -70,7 +74,7 @@ function renderScreen() {
       minimumFractionDigits: 2,
     });
     checkedValue = item.checked ? "checked" : ""; //checa se o campo deve estar marcado na renderização com base no valor do array
-    valueItemId = item.checked ? valueItemId : ""; 
+    valueItemId = item.checked ? valueItemId : "";
     htmlCode += `
     <li class="content input-group ${checkedValue}" id="${item.id}">
     <input type="checkbox" class="form-check-input chk" ${checkedValue} id="chk-${item.id}"/> 
@@ -88,20 +92,19 @@ function renderScreen() {
   }
 
   //Cria as funções em todos os elementos 'span' com a descrição do item, permitindo a edição após duploclick e fazendo a edição com o focusout
-  var itemText = document.getElementsByClassName("text"); 
+  var itemText = document.getElementsByClassName("text");
   for (var i = 0; i < itemText.length; i++) {
-
-    itemText[i].addEventListener("keypress", function(e){
-      var id = this.getAttribute("id"); //Recupera o ID do elemento
-    var text = this.value; //Recupera o texto do elemento
-    id = id.replace("txt-", "");
-      e.key === 'Enter' ? editItem(id,text) : '';
-    }); //função focusout para alterar array/localstorage com base na descrição atualizada do elemento
-    itemText[i].addEventListener("focusout", function(){
+    itemText[i].addEventListener("keypress", function (e) {
       var id = this.getAttribute("id"); //Recupera o ID do elemento
       var text = this.value; //Recupera o texto do elemento
       id = id.replace("txt-", "");
-      editItem(id,text);
+      e.key === "Enter" ? editItem(id, text) : "";
+    }); //função focusout para alterar array/localstorage com base na descrição atualizada do elemento
+    itemText[i].addEventListener("focusout", function () {
+      var id = this.getAttribute("id"); //Recupera o ID do elemento
+      var text = this.value; //Recupera o texto do elemento
+      id = id.replace("txt-", "");
+      editItem(id, text);
     }); //função focusout para alterar array/localstorage com base na descrição atualizada do elemento
     itemText[i].addEventListener("dblclick", contentEditable); //função para liberar a edição do elemento após duploclick
   }
@@ -130,19 +133,19 @@ var boxChecked = async function () {
     parent.classList.remove("checked", "animate__animated", "animate__pulse");
     parent.classList.add("noChecked");
     idItem = "";
+    
   }
 };
 
 //Função chamada para permitir a edição do item com o duploclick no elemento
 var contentEditable = function () {
-  this.classList.add("editable")
-  const addAttributte = this.readOnly = false;
+  this.classList.add("editable");
+  const addAttributte = (this.readOnly = false);
   this.focus();
 };
 
 //Atualiza o conteúdo no Array/LocalStorage ao sair do campo
 var editItem = function (idItem, textItem) {
-
   arrItem = getList(); //Atualiza o array
 
   let result = arrItem.filter(function (el) {
@@ -153,7 +156,7 @@ var editItem = function (idItem, textItem) {
     let index = arrItem.indexOf(element);
     arrItem[index].text = textItem; //atualiza o array com informações do item editado
   }
-  
+
   updateLocalStorage();
 };
 
@@ -234,7 +237,7 @@ formSubmit.addEventListener("submit", (e) => {
 // Função para deletar todos os itens do Array/Objeto atualizando a tela
 function deleteAllItems() {
   const validateDelete = confirm(
-    "Você realmente deseja deletar toda a lista de compras?"
+    "A lista atual será deletada, você está certo disso?"
   );
 
   if (validateDelete) {
@@ -291,9 +294,15 @@ function applyHidden(value, render) {
   formSubmit.hidden = value;
   divFooter.hidden = value;
   divEmptyList.hidden = !value;
-  divFooterCredits.hidden =!value;
+  divFooterCredits.hidden = !value;
   //ternário para exibir/remover os botões quando houver itens no array/localstorage
   render ? ((deleteAll.hidden = value), (deleteChecked.hidden = value)) : "";
+}
+
+function listComplete(){
+  arrItem = getList();
+  let result = arrItem.every((e) => e.checked === true);
+  return result;
 }
 
 //Função executada para valor informado no modal - ela pausa a execução da função boxchecked
@@ -302,7 +311,7 @@ async function hiddenModal(value) {
     let stop = false;
     errModal.hidden = !value;
     modal.style.display = "block";
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
     valueInputModal.focus();
     formModal.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -313,6 +322,7 @@ async function hiddenModal(value) {
         valueInputModal.value = "";
         modal.style.display = "none";
         errModal.hidden = true;
+        listComplete() === true ? congratsLoad() : '';
         stop = true;
       } else {
         errModal.hidden = false;
@@ -331,4 +341,17 @@ async function hiddenModal(value) {
     });
   });
 }
+
+function congratsLoad(){
+  modalCongrats.style.display = "block";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+btnModalCongrats.addEventListener('click', (e) => {
+  e.preventDefault();
+  deleteAllItems();
+  modalCongrats.style.display = "none";
+}
+)
+
 
