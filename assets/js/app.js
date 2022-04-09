@@ -301,9 +301,9 @@ async function hiddenModal(value) {
   return new Promise((resolve) => {
     let stop = false;
     errModal.hidden = !value;
-    valueInputModal.focus();
     modal.style.display = "block";
-
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    valueInputModal.focus();
     formModal.addEventListener("submit", (e) => {
       e.preventDefault();
       if (valueInputModal.value) {
