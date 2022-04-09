@@ -30,12 +30,12 @@ var idItem = "";
 let valorModal = 0;
 let arrItem = [];
 let dayWeekObj = {
-  0: "Domingou no sofá😴? só que não! <br> Que tal iniciar a semana com uma bela lista de compras?",
-  1: "Uma ótima Segunda-Feira pra começar aquele projetinho fitness 😅! <br> Pra não esquecer nada inicie uma lista de compras abaixo!",
-  2: "A terça tá com cara de segunda😁? <br> Cola com nós pra não esquecer nenhum item da lista de compras!",
-  3: "Quarta-feira chefia ✌! <br> Dia propício para fazer aquelaaas compras! Clica no botão abaixo e vamos que vamos! 🏃‍♂️🏃‍♀️",
-  4: "Quinta-feira com &quot;q&quot; de quase sexta🎉! <br> Pra não esquecer nada no mercado, clica abaixo e faz a listinha!",
-  5: "😎 Sextouuuu! <br> Bora fazer a listinha do churras!",
+  0: "<strong>Domingou</strong> no sofá😴? só que não! <br> Que tal iniciar a semana com uma bela lista de compras?",
+  1: "Uma ótima <strong>Segunda-Feira</strong> pra começar aquele projetinho fitness 😅! <br> Pra não esquecer nada inicie uma lista de compras abaixo!",
+  2: "A <strong>terça</strong> tá com cara de segunda😁? <br> Cola com nós pra não esquecer nenhum item da lista de compras!",
+  3: "<strong>Quarta-feira</strong> chefia ✌! <br> Dia propício para fazer aquelaaas compras! Clica no botão abaixo e vamos que vamos! 🏃‍♂️🏃‍♀️",
+  4: "<strong>Quinta-feira</strong> com &quot;q&quot; de quase sexta🎉! <br> Pra não esquecer nada no mercado, clica abaixo e faz a listinha!",
+  5: "😎 <strong> Sextouuuu!</strong> <br> Bora fazer a listinha do churras!",
   6: "Sábado também é dia 🙌!  Inicie uma nova lista para não esquecer nada!",
 };
 

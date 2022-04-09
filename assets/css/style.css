@@ -115,6 +115,10 @@ header .logo {
   opacity: 0.4;
 }
 
+#msgMain{
+font-size: 2rem;
+}
+
 main {
   flex: 1 1 0%;
   max-width: 600px;
@@ -230,4 +234,7 @@ li {
   h2 {
     font-size: 0.5rem;
   }
+  #msgMain{
+    font-size: 1.5rem;
+    }
 }
