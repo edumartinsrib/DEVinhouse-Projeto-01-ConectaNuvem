@@ -4,12 +4,10 @@ import { songEffect } from "./audio.js";
 const btnMain = document.getElementById("btnMain");
 const pMain = document.getElementById("msgMain");
 
+const formModal = document.getElementById('modal-form')
 const modal = document.getElementById("myModal");
-
 const errModal = document.getElementById("errModal");
-
 const valueInputModal = document.getElementById("valueInputModal");
-const valueBtnModal = document.getElementById("valueBtnModal");
 
 const inputItem = document.getElementById("newItemInput");
 const formSubmit = document.getElementById("newItemForm");
@@ -18,7 +16,6 @@ const deleteAll = document.getElementById("deleteAll");
 const deleteChecked = document.getElementById("deleteChecked");
 const nullInput = document.querySelector(".hidden");
 const valueTotal = document.getElementById("valueTotal");
-const formModal = document.getElementById('modal-form')
 
 
 const divEmptyList = document.getElementById("emptyList");
@@ -33,12 +30,12 @@ let valorModal = 0;
 let arrItem = [];
 let dayWeekObj = {
   0: "<strong>Domingou</strong> no sofá😴? só que não! <br> Que tal iniciar a semana com uma bela lista de compras?",
-  1: "Uma ótima <strong>Segunda-Feira</strong> pra começar aquele projetinho fitness 😅! <br> Pra não esquecer nada inicie uma lista de compras abaixo!",
+  1: "<strong>Segunda-Feira</strong> e vai começar aquele projetinho fitness?😅 <br> Pra não esquecer nada inicie uma lista de compras abaixo!",
   2: "A <strong>terça</strong> tá com cara de segunda😁? <br> Cola com nós pra não esquecer nenhum item da lista de compras!",
   3: "<strong>Quarta-feira</strong> chefia ✌! <br> Dia propício para fazer aquelaaas compras! Clica no botão abaixo e vamos que vamos! 🏃‍♂️🏃‍♀️",
   4: "<strong>Quinta-feira</strong> com &quot;q&quot; de quase sexta🎉! <br> Pra não esquecer nada no mercado, clica abaixo e faz a listinha!",
   5: "😎 <strong> Sextouuuu!</strong> <br> Bora fazer a listinha do churras!",
-  6: "<strong>Sábado</strong> também é dia 🙌!  Inicie uma nova lista para não esquecer nada!",
+  6: "<strong>Sábado</strong> também é dia 🙌!<br>Inicie uma nova lista para não esquecer nada!",
 };
 
 pMain.innerHTML = dayWeekObj[dayWeek];
@@ -56,14 +53,12 @@ function renderScreen() {
   let checkedValue = "";
 
   if (!items || items.length === 0) {
-    listBox.innerHTML = ""; //Se não houver nada salvo, não ocorre a renderização de elementos
+    listBox.innerHTML = ""; 
     valueTotal.innerText = "R$ 0,00";
 
     applyHidden(true, "render");
     return;
   } else {
-    //deleteAll.hidden = false; //se  há valores no array exibe os botões de delete
-    //deleteChecked.hidden = false;
     applyHidden(false, "render");
   }
 
@@ -75,11 +70,11 @@ function renderScreen() {
       minimumFractionDigits: 2,
     });
     checkedValue = item.checked ? "checked" : ""; //checa se o campo deve estar marcado na renderização com base no valor do array
-    valueItemId = item.checked ? valueItemId : ""; //chega se o campo não está marcado não traz o valor do item na renderização
+    valueItemId = item.checked ? valueItemId : ""; 
     htmlCode += `
     <li class="content input-group ${checkedValue}" id="${item.id}">
     <input type="checkbox" class="form-check-input chk" ${checkedValue} id="chk-${item.id}"/> 
-    <span id="txt-${item.id} "class="lineThrough text itemList"> ${item.text}</span> 
+    <input type="text" id="txt-${item.id} "class="lineThrough text" value="${item.text}" readOnly> 
     <span id="value-${item.id} "class="valueItem"> ${valueItemId}</span> 
     <button id="btn-${item.id}" class="delete action"><i class="fa-solid fa-trash-can"></i></button> 
     </li>`;
@@ -93,9 +88,21 @@ function renderScreen() {
   }
 
   //Cria as funções em todos os elementos 'span' com a descrição do item, permitindo a edição após duploclick e fazendo a edição com o focusout
-  var itemText = document.getElementsByClassName("lineThrough"); //  take all DOM elements span that have an 'Linethrough'
+  var itemText = document.getElementsByClassName("text"); 
   for (var i = 0; i < itemText.length; i++) {
-    itemText[i].addEventListener("focusout", editItem); //função focusout para alterar array/localstorage com base na descrição atualizada do elemento
+
+    itemText[i].addEventListener("keypress", function(e){
+      var id = this.getAttribute("id"); //Recupera o ID do elemento
+    var text = this.value; //Recupera o texto do elemento
+    id = id.replace("txt-", "");
+      e.key === 'Enter' ? editItem(id,text) : '';
+    }); //função focusout para alterar array/localstorage com base na descrição atualizada do elemento
+    itemText[i].addEventListener("focusout", function(){
+      var id = this.getAttribute("id"); //Recupera o ID do elemento
+      var text = this.value; //Recupera o texto do elemento
+      id = id.replace("txt-", "");
+      editItem(id,text);
+    }); //função focusout para alterar array/localstorage com base na descrição atualizada do elemento
     itemText[i].addEventListener("dblclick", contentEditable); //função para liberar a edição do elemento após duploclick
   }
   //Cria as funções para todos os checkboxs renderizados
@@ -118,7 +125,6 @@ var boxChecked = async function () {
   //verifica itens marcados e adiciona/remove classes para animação e cor no elemento, a depender do estado.
   if (this.checked) {
     parent.classList.add("checked", "animate__animated", "animate__pulse");
-   
     idItem = "";
   } else {
     parent.classList.remove("checked", "animate__animated", "animate__pulse");
@@ -129,27 +135,25 @@ var boxChecked = async function () {
 
 //Função chamada para permitir a edição do item com o duploclick no elemento
 var contentEditable = function () {
-  const addAttributte = this.setAttribute("contenteditable", true);
+  this.classList.add("editable")
+  const addAttributte = this.readOnly = false;
   this.focus();
 };
 
 //Atualiza o conteúdo no Array/LocalStorage ao sair do campo
-var editItem = function () {
-  var id = this.getAttribute("id"); //Recupera o ID do elemento
-  var text = this.textContent; //Recupera o texto do elemento
+var editItem = function (idItem, textItem) {
 
-  id = id.replace("txt-", "");
   arrItem = getList(); //Atualiza o array
 
   let result = arrItem.filter(function (el) {
-    return el.id == id; //Filtra o array conforme o ID do elemento
+    return el.id == idItem; //Filtra o array conforme o ID do elemento
   });
 
   for (let element of result) {
     let index = arrItem.indexOf(element);
-    arrItem[index].text = text; //atualiza o array com informações do item editado
+    arrItem[index].text = textItem; //atualiza o array com informações do item editado
   }
-
+  
   updateLocalStorage();
 };
 
@@ -172,8 +176,7 @@ var removeItem = function () {
   updateLocalStorage();
 };
 
-// Função para gerar novo ID e adicionar item ao array
-
+// Função para adicionar item ao array
 function addItem(text, value, qtd) {
   const newID = Date.now() * Math.random();
   const itemArray = { text, checked: false, id: newID, value: value, qtd: qtd };
@@ -230,7 +233,6 @@ formSubmit.addEventListener("submit", (e) => {
 
 // Função para deletar todos os itens do Array/Objeto atualizando a tela
 function deleteAllItems() {
- 
   const validateDelete = confirm(
     "Você realmente deseja deletar toda a lista de compras?"
   );
@@ -259,7 +261,6 @@ function deleteCheckeds() {
   }
   songEffect("trash");
   updateLocalStorage();
- 
 }
 
 //Função para soma do total com base no array atualizado pelo localstorage
@@ -291,11 +292,11 @@ function applyHidden(value, render) {
   divFooter.hidden = value;
   divEmptyList.hidden = !value;
   divFooterCredits.hidden =!value;
-  //ternário para exibir/remover os botões apenas na função reenderscreen quando houver itens no array/localstorage
-  //assim, quando não há itens cadastrados na tela, apenas os botões deleteall/deleteChecked não são exibidos
+  //ternário para exibir/remover os botões quando houver itens no array/localstorage
   render ? ((deleteAll.hidden = value), (deleteChecked.hidden = value)) : "";
 }
 
+//Função executada para valor informado no modal - ela pausa a execução da função boxchecked
 async function hiddenModal(value) {
   return new Promise((resolve) => {
     let stop = false;

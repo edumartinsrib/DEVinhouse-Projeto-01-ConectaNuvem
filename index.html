@@ -166,7 +166,7 @@
         <div class="content input-group">
           <input type="text" name="newItemInput" id="newItemInput"
             class="form-control animate__animated animate__flipInX"
-            placeholder="✍️ Adicione um item a lista de compras! Ex: Banana 🍌" />
+            placeholder="✍️ Adicione um item a lista de compras! Ex: Banana 🍌" autocomplete="off" />
           <button type="submit" id="newItemSubmit" class="fa-solid fa-cart-plus input-group-addon "></button>
 
         </div>
@@ -179,7 +179,7 @@
     <section class="item-list">
       <ul class="items" id="items">
         <!--
-        script  
+        script reenderscreen 
         -->
       </ul>
       <button id="deleteAll" type="button" class="btn-outline-danger animate__animated animate__fadeInUp btnAction"
@@ -190,15 +190,15 @@
     </section>
   </main>
 
-  <!-- Modal -->
+  <!-- Modal Valor -->
   <div id="myModal" class="modal">
-    <!-- Modal content -->
+    <!-- Conteúdo Modal -->
     <form id="modal-form">
     <div class="modal-content">
       <div class=" text-center input-group">
-        Qual o valor pago? 
+        Qual o valor pago no item? 
         <input type="number" min="0" name="valueItemInput" id="valueInputModal" class="bg-light mt-2"
-          placeholder="R$&#128181;" />
+          placeholder="R$&#128181;" step="0.010"/>
           <div class="d-grid gap-2">
         <button id="valueBtnModal" type="submit" class="btn btn-success mt-4"><strong>Salvar</strong></button>
        </div>
@@ -207,6 +207,19 @@
     </div>
   </form>
   </div>
+
+<!-- Modal Valor -->
+<div id="modalCongrats" class="modal">
+  <!-- Conteúdo Modal -->
+  <form id="modalformCongrats">
+  <div class="modal-content">
+    <div class=" text-center input-group">
+ 
+    </div>
+  </div>
+</form>
+</div>
+
 
   <footer id="footer" class="fixed-bottom text-white-50" hidden>
     <div class="d-flex container justify-content-center ">

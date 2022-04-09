@@ -70,7 +70,7 @@ button {
   border: none;
 }
 
-input[type="checkbox"]:checked + span.lineThrough {
+input[type="checkbox"]:checked + input.lineThrough {
   text-decoration: line-through;
 }
 
@@ -81,6 +81,10 @@ input[type="checkbox"]:checked + span.lineThrough {
     #0f3443 51%,
     #34e89e 100%
   );
+}
+
+.text{
+  border-color: #fff!important;
 }
 .btn-grad {
   margin: 10px;
@@ -191,10 +195,6 @@ main {
   padding: 0.6rem;
 }
 
-#text {
-  justify-content: left;
-}
-
 .checked {
   background-image: linear-gradient(
     to right,
@@ -202,6 +202,10 @@ main {
     #26a0da 51%,
     #314755 100%
   );
+  color: var(--light);
+}
+
+.checked input.text{
   color: var(--light);
 }
 
@@ -225,6 +229,13 @@ li {
   flex-grow: 1;
   position: relative;
   left: 5px;
+}
+
+.editable:focus-within{
+ 
+  box-shadow: 2px 2px 50px 2px var(--blue);
+  color: var(--red);
+  border-radius: 400px !important;
 }
 
 .action {
