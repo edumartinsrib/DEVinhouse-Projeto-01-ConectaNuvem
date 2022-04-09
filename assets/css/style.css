@@ -1,5 +1,5 @@
 :root {
-  --dark: #303841;
+  --dark: #00092c;
   --grey: #6b7280;
   --purple: #5900ff;
   --blue: #2d46b9;
@@ -8,6 +8,7 @@
   --redDark: #630606;
   --green: #6bcb77;
   --greenDark: #019267;
+  --blueDark: #051367;
 }
 
 * {
@@ -52,17 +53,44 @@ button {
   background: none;
 }
 .chk {
-  border-radius: 5px !important;
+  border-radius: 50px !important;
   transform: scale(1.3);
   margin-left: 2px;
   margin-right: 3px;
 }
 :checked {
   background-color: var(--green) !important;
+  border: none;
 }
 
-input[type=checkbox]:checked + span.lineThrough{
+input[type="checkbox"]:checked + span.lineThrough {
   text-decoration: line-through;
+}
+
+.btn-grad {
+  background-image: linear-gradient(
+    to right,
+    #34e89e 0%,
+    #0f3443 51%,
+    #34e89e 100%
+  );
+}
+.btn-grad {
+  margin: 10px;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 4px #eee;
+  border-radius: 10px;
+}
+
+.btn-grad:hover {
+  background-position: right center;
+  color: #fff;
+  text-decoration: none;
 }
 
 .btnAction {
@@ -89,6 +117,15 @@ header .logo {
   font-size: 1.25rem;
 }
 
+#valueInputModal {
+  width: 11.25rem;
+  padding: 0.3rem;
+  border-radius: 1rem;
+  margin-right: 1rem;
+  color: var(--dark);
+  font-size: 1.25rem;
+}
+
 .content button {
   margin-right: 0.5rem;
 }
@@ -101,6 +138,19 @@ header .logo {
 
 #newItemInput::placeholder {
   color: var(--grey);
+}
+
+.colorEffect {
+  background: rgb(131, 58, 180);
+  background: linear-gradient(
+    276deg,
+    rgb(131, 58, 180) 0%,
+    rgba(253, 29, 29, 1) 89%,
+    rgba(252, 176, 69, 1) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 #newItemSubmit {
@@ -119,8 +169,8 @@ header .logo {
   opacity: 0.4;
 }
 
-#msgMain{
-font-size: 2rem;
+#msgMain {
+  font-size: 2rem;
 }
 
 main {
@@ -139,7 +189,12 @@ main {
 }
 
 .checked {
-  background-color: var(--blue);
+  background-image: linear-gradient(
+    to right,
+    #314755 0%,
+    #26a0da 51%,
+    #314755 100%
+  );
   color: var(--light);
 }
 
@@ -166,6 +221,15 @@ li {
 }
 
 .action {
+  opacity: 0.3;
+  background-image: linear-gradient(to right, var(--red), var(--redDark));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.action:hover {
+  opacity: 1;
   background-image: linear-gradient(to right, var(--red), var(--redDark));
   background-clip: text;
   -webkit-background-clip: text;
@@ -175,22 +239,23 @@ li {
 
 .modal {
   display: none;
-  position: fixed;
+  position: absolute;
   z-index: 1;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .modal-content {
-  background-color: var(--light);
+  font-size: 1.125rem;
+  background-color: var(--dark);
   margin: 15% auto;
   padding: 30px;
-  border: 1px solid #888;
-  width: 480px;
+  border-radius: 20px;
+  width: 350px;
 }
 
 .emptyValue {
@@ -200,7 +265,7 @@ li {
 #valueBtnModal {
   position: relative;
   top: -10px;
-  left: -15px;
+  left: center;
 }
 
 /*Texto do Rodapé*/
@@ -224,7 +289,8 @@ li {
 @media (max-width: 600px) {
   header {
     display: flex;
-    background-color: #22577e;
+    background-color: #00092c;
+    border-bottom: 1px solid var(--light);
   }
 
   #newItemInput::placeholder {
@@ -238,7 +304,7 @@ li {
   h2 {
     font-size: 0.5rem;
   }
-  #msgMain{
+  #msgMain {
     font-size: 1.5rem;
-    }
+  }
 }

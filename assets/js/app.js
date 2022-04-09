@@ -6,7 +6,7 @@ const pMain = document.getElementById("msgMain");
 
 const modal = document.getElementById("myModal");
 const btnModal = document.getElementById("myBtn");
-const spanModal = document.getElementById("itemModal");
+
 const errModal = document.getElementById("errModal");
 
 const valueInputModal = document.getElementById("valueInputModal");
@@ -116,7 +116,7 @@ var boxChecked = async function () {
   //verifica itens marcados e adiciona/remove classes para animação e cor no elemento, a depender do estado.
   if (this.checked) {
     parent.classList.add("checked", "animate__animated", "animate__pulse");
-    spanModal.innerText = "";
+   
     idItem = "";
   } else {
     parent.classList.remove("checked", "animate__animated", "animate__pulse");
@@ -299,6 +299,7 @@ async function hiddenModal(value) {
     errModal.hidden = !value;
     valueInputModal.focus();
     modal.style.display = "block";
+   
 
     valueBtnModal.addEventListener("click", () => {
       if (valueInputModal.value) {

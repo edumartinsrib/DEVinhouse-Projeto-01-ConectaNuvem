@@ -157,7 +157,7 @@
         </svg>
         <p id="msgMain">Verificamos que você não possui lista de compras cadastradas. <br> O que acha de iniciarmos uma
           nova lista?</p>
-        <button id="btnMain" class="btn btn-success">Sim ou com certeza?</button>
+        <button id="btnMain" class="btn btn-grad">Sim ou com certeza?</button>
       </div>
     </div>
 
@@ -196,12 +196,14 @@
   <!-- Modal -->
   <div id="myModal" class="modal">
     <!-- Modal content -->
-    <div class="modal-content bg-dark">
-      <div class="justify-content-center text-center ">
-        Por favor, informe o valor do item <span id="itemModal"></span> !
-        <input type="number" min="0" name="valueItemInput" id="valueInputModal" class="content bg-light mt-2"
+    <div class="modal-content">
+      <div class=" text-center ">
+        Qual o valor pago? 
+        <input type="number" min="0" name="valueItemInput" id="valueInputModal" class="bg-light mt-2"
           placeholder="R$&#128181;" />
-        <button id="valueBtnModal" class="btn btn-outline-info mt-2">Salvar</button>
+          <div class="d-grid gap-2">
+        <button id="valueBtnModal" class="btn btn-success mt-4"><strong>Salvar</strong></button>
+       </div>
       </div>
       <p class="text-center text-danger" id="errModal">👎Oops! Para prosseguir você deve informar o valor!</p>
     </div>
