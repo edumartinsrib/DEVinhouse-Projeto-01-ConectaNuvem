@@ -52,13 +52,13 @@ As seguintes funcionalidades foram implementadas:
 
 ## Mobile 📱
 <p align="left">
-  <img alt="home-mobile" title="#home-mobile" src="./assets/screenshots/home-mobile.png" width="300px"><img alt="content-mobile" title="#content-mobile" src="./assets/screenshots/content-mobile.png" width="300px"><img alt="home-mobile" title="#home-mobile" src="./assets/screenshots/content-mobile2.png" width="300px">
+  <img alt="home-mobile" title="#home-mobile" src="./assets/screenshots/home-mobile.png" width="250px"><img alt="content-mobile" title="#content-mobile" src="./assets/screenshots/content-mobile.png" width="250px"><img alt="home-mobile" title="#home-mobile" src="./assets/screenshots/content-mobile2.png" width="250px">
 </p>
 
 ## Web 💻
 
 <p align="left">
-  <img alt="home-web" title="#home-web" src="./assets/screenshots/home-web.png" width="300px"><img alt="content-web" title="#content-web" src="./assets/screenshots/content-web.png" width="300px"><img alt="home-web" title="#home-web" src="./assets/screenshots/content-web2.png" width="300px">
+  <img alt="home-web" title="#home-web" src="./assets/screenshots/home-web.png" width="250px"><img alt="content-web" title="#content-web" src="./assets/screenshots/content-web.png" width="250px"><img alt="home-web" title="#home-web" src="./assets/screenshots/content-web2.png" width="250px">
 </p>
 
 
@@ -68,18 +68,16 @@ As seguintes funcionalidades foram implementadas:
 - HTML;
 - CSS;
 - Bootstrap.
-- 
+
 
 # 🧑‍💻 Autor:
 
 **Eduardo Martins Ribeiro** - [Linkedin](https://www.linkedin.com/in/edumrib/ "Eduardo Martins Ribeiro") - [Email](mailto:edumartinsrib@live.com?subject=ola "Olá!")
 
 
-# Agradecimentos:
+# 🤝 Agradecimentos:
 
-O presente projeto apenas foi possível de ser realizado em razão do excelente ensino disponibilizado por toda a equipe DEVInHouse e ConectaNuvem.
-
-Meus sinceros agradecimentos a:
+A realização deste projeto apenas foi possível em razão do excelente ensino disponibilizado por toda a equipe DEVInHouse e ConectaNuvem. Em especial, meus sinceros agradecimentos a:
 
 - Romeu Isaac Casarotto 
 - Ana Paula dos Santos
@@ -87,4 +85,4 @@ Meus sinceros agradecimentos a:
 - Fernando Puntel 
 - Michel Kayser Rohden
 - ConectaNuvem
-- Equipe DEVInHouse
+- E demais membros da Equipe DEVInHouse
