@@ -14,10 +14,10 @@
 * {
   margin: 0;
   box-sizing: border-box;
-  font-family: "Nunito", sans-serif;
 }
 
 body {
+  font-family: "Nunito", sans-serif;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -348,7 +348,7 @@ li {
   }
 }
 
-@media (max-width: 280px) {
+@media (max-width: 375px) {
   header {
     font-size: 0.1rem;
     display: flex;
@@ -398,8 +398,12 @@ li {
   h2 {
     font-size: 0.5rem;
   }
+
+  h5{
+    font-size: 0.8rem;
+  }
   #msgMain {
-    font-size: 0.6rem;
+    font-size: 1rem;
   }
 
   #deleteChecked {
@@ -420,7 +424,7 @@ li {
 
   .textFooter {
     color: var(--light);
-    font-size: 0.7rem;
+    font-size: 0.5rem;
     
   }
   .textFooter + #valueTotal {
@@ -432,7 +436,7 @@ li {
   }
   .modal-content {
     font-size: 0.8rem;
-    width: 200px;
+    width: 300px;
   }
   .text-center {
     justify-content: center;
