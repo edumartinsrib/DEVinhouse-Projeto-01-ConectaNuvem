@@ -52,13 +52,13 @@ As seguintes funcionalidades foram implementadas:
 
 ## Mobile 📱
 <p align="left">
-  <img alt="home-mobile" title="#home-mobile" src="./assets/screenshots/home-mobile.png" width="250px"><img alt="content-mobile" title="#content-mobile" src="./assets/screenshots/content-mobile.png" width="250px"><img alt="home-mobile" title="#home-mobile" src="./assets/screenshots/content-mobile2.png" width="250px">
+  <img alt="home-mobile" title="#home-mobile" src="./assets/screenshots/mobile.png" width="900px">
 </p>
 
 ## Web 💻
 
 <p align="left">
-  <img alt="home-web" title="#home-web" src="./assets/screenshots/home-web.png" width="250px"><img alt="content-web" title="#content-web" src="./assets/screenshots/content-web.png" width="250px"><img alt="home-web" title="#home-web" src="./assets/screenshots/content-web2.png" width="250px">
+  <img alt="home-web" title="#home-web" src="./assets/screenshots/web.png" width="900px">
 </p>
 
 
