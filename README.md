@@ -80,6 +80,8 @@ As seguintes funcionalidades foram implementadas:
 
 O presente projeto apenas foi possível de ser realizado em razão do excelente ensino disponibilizado por toda a equipe DEVInHouse e ConectaNuvem.
 
+Meu sincero agradecimento:
+
 - Romeu Isaac Casarotto 
 - Ana Paula dos Santos
 - Cesar Abascal

@@ -5,6 +5,7 @@ export function songEffect(song) {
   
   switch (song) {
     case "trash":
+      songEffectTrash.currentTime = 0.8;
       songEffectTrash.play();
       break;
     case "cash":
