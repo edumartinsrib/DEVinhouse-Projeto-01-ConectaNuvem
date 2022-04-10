@@ -9,6 +9,7 @@ export function songEffect(song) {
       songEffectTrash.play();
       break;
     case "cash":
+      songEffectCash.currentTime = 0.6;
       songEffectCash.play();
       break;
     case "finish":
