@@ -9,7 +9,7 @@ const modal = document.getElementById("myModal");
 const errModal = document.getElementById("errModal");
 const valueInputModal = document.getElementById("valueInputModal");
 
-const formModalCongrats = document.getElementById("modalformCongrats");
+const btnModalCongratsContinue = document.querySelector(".continue");
 const modalCongrats = document.getElementById("modalCongrats");
 const btnModalCongrats = document.getElementById("btnModalCongrats");
 
@@ -348,5 +348,10 @@ function congratsLoad() {
 btnModalCongrats.addEventListener("click", (e) => {
   e.preventDefault();
   deleteAllItems();
+  modalCongrats.style.display = "none";
+});
+
+btnModalCongratsContinue.addEventListener("click", (e) => {
+  e.preventDefault();
   modalCongrats.style.display = "none";
 });
