@@ -13,7 +13,7 @@
 # 💻 Sobre o projeto
 <p align="left">Este projeto foi criado para a primeira avaliação do Módulo 01 do curso DEVInHouse em parceria com ACATE e ConectaNuvem. Foram utilizados os conhecimentos adquiridos nas primeiras cinco semanas do módulo. 
 
-A ideia do projeto consiste na construção de uma aplicação de **lista de compras** para inserção de itens pelo usuário com possibilidade de edição dos itens, exclusão e adição do valor pago.Para alcançar o resultado almejados, os seguintes aprendizados foram aplicados na confecção do projeto:
+A ideia do projeto consiste na construção de uma aplicação de **lista de compras** para inserção de itens pelo usuário, com possibilidade de edição dos itens, exclusão e adição do valor pago. Para alcançar o resultado almejado, os seguintes aprendizados foram aplicados na confecção do projeto:
 
 - HTML: uso das principais tags como head, meta, title, body, div, h1, form, input, button, ul, li. Atributos de tags como class, id, type. Inclusão de arquivos de estilos (css) e de script (js) na página.
 - CSS: estilização da página, botões, inputs, alteração de atributos dos elementos da tela de acordo com a interação do usuário, (UX), responsividade a diferentes tamanhos de telas (mobile📱/web💻)
@@ -45,6 +45,7 @@ As seguintes funcionalidades foram implementadas:
 - Remoção de todos os itens da lista;
 - Adição do valor pago à cada item;
 - Visualização do valor total pago da lista.
+
 # 🎨 Layout
 
 <p> O aplicativo foi criado sob o conceito de design responsivo 'mobile first', de modo a atender diversos tamanhos de telas.</p>
@@ -67,24 +68,23 @@ As seguintes funcionalidades foram implementadas:
 - HTML;
 - CSS;
 - Bootstrap.
-
-
+- 
 
 # 🧑‍💻 Autor:
 
 **Eduardo Martins Ribeiro** - [Linkedin](https://www.linkedin.com/in/edumrib/ "Eduardo Martins Ribeiro") - [Email](mailto:edumartinsrib@live.com?subject=ola "Olá!")
- 
 
 
 # Agradecimentos:
 
 O presente projeto apenas foi possível de ser realizado em razão do excelente ensino disponibilizado por toda a equipe DEVInHouse e ConectaNuvem.
 
-Meu sincero agradecimento:
+Meus sinceros agradecimentos a:
 
 - Romeu Isaac Casarotto 
 - Ana Paula dos Santos
 - Cesar Abascal
 - Fernando Puntel 
+- Michel Kayser Rohden
 - ConectaNuvem
 - Equipe DEVInHouse
