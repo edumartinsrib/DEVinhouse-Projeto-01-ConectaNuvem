@@ -79,12 +79,12 @@ function renderScreen() {
     <input type="checkbox" class="form-check-input chk" ${checkedValue} id="chk-${item.id}"/> 
     <input type="text" id="txt-${item.id} "class="lineThrough text" value="${item.text}" readOnly> 
     <span id="value-${item.id} "class="valueItem"> ${valueItemId}</span> 
-    <button id="btn-${item.id}" class="delete action"><i class="fa-solid fa-trash-can"></i></button> 
+    <button id="btn-${item.id}" class="delete action"><i class="fa fa-trash-alt"></i></button> 
     </li>`;
   });
   listBox.innerHTML = htmlCode;
 
-  //Cria as funções em todos os 'buttons' para deletar items da lista
+  //Cria as funções em todos os 'buttons' para deletar items da lista 
   var buttons = document.getElementsByClassName("delete"); // take all DOM elements buttons that have an 'remove'
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", removeItem);
