@@ -43,11 +43,6 @@ let dayWeekObj = {
 
 pMain.innerHTML = dayWeekObj[dayWeek];
 
-//Evento click no botão 'apagar todos os itens da lista'
-deleteAll.addEventListener("click", () => {
-  deleteAllItems();
-  renderScreen();
-});
 
 //Função principal e exclusiva para renderização dos elementos na tela
 function renderScreen() {
@@ -84,7 +79,7 @@ function renderScreen() {
   });
   listBox.innerHTML = htmlCode;
 
-  //Cria as funções em todos os 'buttons' para deletar items da lista 
+  //Cria as funções em todos os 'buttons' para deletar items da lista
   var buttons = document.getElementsByClassName("delete"); // take all DOM elements buttons that have an 'remove'
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", removeItem);
@@ -110,12 +105,13 @@ function renderScreen() {
   //Cria as funções para todos os checkboxs renderizados
   var check = document.getElementsByClassName("chk"); //
   for (var i = 0; i < buttons.length; i++) {
-    check[i].addEventListener("click", boxChecked); //função para alterar o status checked do elemento no array/localstorage, assim como abrir modal para informar valores
+    check[i].addEventListener("click", boxChecked);
   }
   //Por fim, é renderizado no footer o valor atualizado dos itens 'checkeds'
   sumTotal();
 }
 
+//função para alterar o status checked do elemento no array/localstorage, assim como abrir modal para informar valores
 var boxChecked = async function () {
   var parent = this.parentNode; //Obtém a referência do componente pai para inclusão das animações/alterações de background color
   var id = this.getAttribute("id"); // variável id criada para receber o id do componente 'checked'
@@ -226,10 +222,10 @@ formSubmit.addEventListener("submit", (e) => {
   } else {
     nullInput.hidden = true;
   }
-  addItem(inputItem.value.trim(), 0, 0); //função para adição de novos itens
+  addItem(inputItem.value.trim(), 0, 0);
   updateLocalStorage();
-  inputItem.value = ""; //limpa o campo após salvar dados
-  inputItem.focus(); //atualiza o foco no campo input para inserção de novos itens
+  inputItem.value = "";
+  inputItem.focus();
 });
 
 // Função para deletar todos os itens do Array/Objeto atualizando a tela
@@ -286,8 +282,16 @@ function sumTotal() {
 //disparo de evento no botão para deletar itens comprados
 deleteChecked.addEventListener("click", () => deleteCheckeds());
 
+//Evento click no botão 'apagar todos os itens da lista'
+deleteAll.addEventListener("click", () => {
+  deleteAllItems();
+  renderScreen();
+});
+
+//Evento click no botão principal para abrir lista de compras
 btnMain.addEventListener("click", () => applyHidden(false));
 
+//Função que exibe/esconde itens em tela a depender do estado da aplicação
 function applyHidden(value, render) {
   formSubmit.hidden = value;
   divFooter.hidden = value;
@@ -339,6 +343,7 @@ async function hiddenModal(value) {
   });
 }
 
+//Função executada para exir modal e parabenizar o usuário pela conclusão da lista
 function congratsLoad() {
   modalCongrats.style.display = "block";
   window.scrollTo({ top: 0, behavior: "smooth" });
