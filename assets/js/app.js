@@ -188,8 +188,7 @@ const getList = function () {
   }
 };
 
-//Renderizar itens na tela no load do formulário
-renderScreen();
+
 
 function updateLocalStorage() {
   localStorage.setItem(listLocalStorage, JSON.stringify(arrItem)); //
@@ -360,3 +359,6 @@ btnModalCongratsContinue.addEventListener("click", (e) => {
   e.preventDefault();
   modalCongrats.style.display = "none";
 });
+
+//Renderizar itens na tela no load do formulário
+renderScreen();
